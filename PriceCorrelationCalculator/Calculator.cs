@@ -19,7 +19,7 @@ namespace PriceCorrelationCalculator
             PriceServer.GetFundTable();
 
             FundTable.Clear();
-            foreach (var dictionaryEntry in PriceServer.FundTable)
+            foreach (DictionaryEntry dictionaryEntry in PriceServer.FundTable)
             {
                 FundTable.Add(dictionaryEntry.Key, dictionaryEntry.Value);
             }
@@ -34,6 +34,6 @@ namespace PriceCorrelationCalculator
 
         public PriceServer PriceServer { get; set; }
 
-        public IDictionary FundTable { get; set; }
+        public IDictionary FundTable { get; set; } = new SortedList();
     }
 }

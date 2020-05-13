@@ -4,6 +4,11 @@ namespace PriceCorrelationCalculator
 {
     public class Calculator
     {
+        public Calculator()
+        {
+            PriceServer = new PriceServer();
+        }
+
         public void CalculateCorrelation()
         {
             throw new System.NotImplementedException();

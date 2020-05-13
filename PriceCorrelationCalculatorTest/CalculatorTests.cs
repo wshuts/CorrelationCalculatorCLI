@@ -18,5 +18,14 @@ namespace PriceCorrelationCalculatorTest
         {
             Assert.DoesNotThrow(calculator.CalculateCorrelation);
         }
+
+        [Test]
+        public void FundTableGetsInitialized()
+        {
+            calculator.InitializeFundTable();
+            const int expected = 0;
+            var actual = calculator.FundTable.Count;
+            Assert.AreNotEqual(expected, actual);
+        }
     }
 }

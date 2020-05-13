@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 namespace PriceCorrelationCalculator
 {
@@ -29,7 +30,16 @@ namespace PriceCorrelationCalculator
 
         private void RemoveMoneyMarketFunds()
         {
-            throw new System.NotImplementedException();
+            var keysToRemove = new ArrayList();
+            foreach (string fundName in FundTable.Keys)
+            {
+                if (fundName.IndexOf("Money Market", StringComparison.Ordinal) != -1) keysToRemove.Add(fundName);
+            }
+
+            foreach (string fundName in keysToRemove)
+            {
+                FundTable.Remove(fundName);
+            }
         }
 
         public PriceServer PriceServer { get; set; }

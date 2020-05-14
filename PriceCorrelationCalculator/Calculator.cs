@@ -45,5 +45,12 @@ namespace PriceCorrelationCalculator
         public PriceServer PriceServer { get; set; }
 
         public IDictionary FundTable { get; set; } = new SortedList();
+        
+        public IList SelectedFunds { get; set; } = new ArrayList();
+
+        public void ReadCalculationParameters()
+        {
+            
+        }
     }
 }

@@ -27,5 +27,14 @@ namespace PriceCorrelationCalculatorTest
             var actual = calculator.FundTable.Count;
             Assert.AreNotEqual(expected, actual);
         }
+
+        [Test]
+        public void CanReadCalculationParameters()
+        {
+            calculator.ReadCalculationParameters();
+            const int expected = 5;
+            var actual = calculator.SelectedFunds.Count;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

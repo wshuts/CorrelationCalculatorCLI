@@ -1,3 +1,4 @@
+using System.IO;
 using NUnit.Framework;
 using PriceCorrelationCalculator;
 
@@ -5,12 +6,18 @@ namespace PriceCorrelationCalculatorTest
 {
     public class CalculatorTests
     {
+        private const string CalculationParametersFolder = @"CalculationParameters\";
+        private const string ParameterFileNameArg = @"CalculationParameters001.json";
         private Calculator calculator;
+
+        public static FileStream CalculationParametersFileStream { get; private set; }
 
         [SetUp]
         public void Setup()
         {
-            calculator = new Calculator();
+            const string parameterFileName = CalculationParametersFolder + ParameterFileNameArg;
+            CalculationParametersFileStream = new FileStream(parameterFileName, FileMode.Open, FileAccess.Read);
+            calculator = new Calculator(CalculationParametersFileStream);
         }
 
         [Test]

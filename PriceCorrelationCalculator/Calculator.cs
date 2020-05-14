@@ -60,5 +60,10 @@ namespace PriceCorrelationCalculator
             allCalculationParametersReader.Initialize();
             allCalculationParameters = allCalculationParametersReader.AllCalculationParameters;
         }
+
+        public void SerializeFundTable()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

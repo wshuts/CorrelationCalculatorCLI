@@ -43,5 +43,12 @@ namespace PriceCorrelationCalculatorTest
             var actual = calculator.SelectedFunds.Count;
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void CanSerializeFundTable()
+        {
+            calculator.InitializeFundTable();
+            Assert.DoesNotThrow(calculator.SerializeFundTable);
+        }
     }
 }

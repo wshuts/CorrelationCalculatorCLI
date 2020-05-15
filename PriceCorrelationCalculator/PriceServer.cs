@@ -8,6 +8,8 @@ namespace PriceCorrelationCalculator
 {
     public class PriceServer
     {
+        public IDictionary FundTable { get; set; } = new SortedList();
+
         public void GetFundTable()
         {
             var requestUri = BuildQuery();
@@ -17,29 +19,24 @@ namespace PriceCorrelationCalculator
 
         private void ParseFundTable(string responseFromServer)
         {
-            IList fundTableLines=new ArrayList();
+            IList fundTableLines = new ArrayList();
 
             var parsedStrings = responseFromServer.Split('\n');
 
             fundTableLines.Clear();
-            foreach(var line in parsedStrings)
-            {
-                if(line.IndexOf("</option>", StringComparison.Ordinal)!=-1)
-                {
+            foreach (var line in parsedStrings)
+                if (line.IndexOf("</option>", StringComparison.Ordinal) != -1)
                     fundTableLines.Add(line);
-                }
-            }
-			
-            for(var count=0;count<5;count++)
-            {
-                if(fundTableLines.Count>0)fundTableLines.RemoveAt(0);
-            }
-			
+
+            for (var count = 0; count < 5; count++)
+                if (fundTableLines.Count > 0)
+                    fundTableLines.RemoveAt(0);
+
             FundTable.Clear();
-            foreach(string line in fundTableLines)
+            foreach (string line in fundTableLines)
             {
-                var chunks = line.Split('\"','>','<');
-                FundTable.Add(chunks[4],chunks[2]);
+                var chunks = line.Split('\"', '>', '<');
+                FundTable.Add(chunks[4], chunks[2]);
             }
         }
 
@@ -55,7 +52,9 @@ namespace PriceCorrelationCalculator
             var response = (HttpWebResponse) request.GetResponse();
 
             var dataStream = response.GetResponseStream();
-            var reader = new StreamReader(dataStream ?? throw new InvalidOperationException("Could not get response from the price server."));
+            var reader = new StreamReader(dataStream ??
+                                          throw new InvalidOperationException(
+                                              "Could not get response from the price server."));
             var responseFromServer = reader.ReadToEnd();
 
             reader.Close();
@@ -72,7 +71,5 @@ namespace PriceCorrelationCalculator
             const string requestUri = absolutePath + sc;
             return requestUri;
         }
-
-        public IDictionary FundTable { get; set; } = new SortedList();
     }
 }

@@ -2,11 +2,14 @@
 using System.Collections;
 using System.IO;
 using CalculationParameterReader;
+using Newtonsoft.Json;
 
 namespace PriceCorrelationCalculator
 {
     public class Calculator
     {
+        private const string FundTableFolder = @"FundTable\";
+        private const string FundTableFileName = @"FundTable.json";
         private readonly FileStream calculationParametersFileStream;
         private CalculationParameters[] allCalculationParameters;
 
@@ -63,7 +66,12 @@ namespace PriceCorrelationCalculator
 
         public void SerializeFundTable()
         {
-            throw new NotImplementedException();
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var serializer = new JsonSerializer {Formatting = Formatting.Indented};
+
+            using var sw = new StreamWriter(FundTableFolder + FundTableFileName);
+            using JsonWriter writer = new JsonTextWriter(sw);
+            serializer.Serialize(writer, FundTable);
         }
     }
 }

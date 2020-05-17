@@ -10,13 +10,17 @@ namespace PriceCorrelationCalculator
     {
         private const string RelativeFundTableFileName = @"FundTable\FundTable.json";
         private readonly FileStream calculationParametersFileStream;
+        private readonly JsonSerializer serializer;
         private CalculationParameters[] allCalculationParameters;
 
         public Calculator(FileStream calculationParametersFileStream)
         {
             this.calculationParametersFileStream = calculationParametersFileStream;
             PriceServer = new PriceServer();
+            serializer = new JsonSerializer {Formatting = Formatting.Indented};
         }
+
+        public string FullFundTableFileName { get; private set; }
 
         public PriceServer PriceServer { get; set; }
 
@@ -65,27 +69,28 @@ namespace PriceCorrelationCalculator
 
         public void SerializeFundTable()
         {
-            var currentDomain = AppDomain.CurrentDomain;
-            var baseDirectory = currentDomain.BaseDirectory;
-            var fullFundTableFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeFundTableFileName);
+            InitializeFullFundTableFileName();
 
-            using var sw = new StreamWriter(fullFundTableFileName);
+            using var sw = new StreamWriter(FullFundTableFileName);
             using JsonWriter writer = new JsonTextWriter(sw);
 
-            var serializer = new JsonSerializer {Formatting = Formatting.Indented};
             serializer.Serialize(writer, FundTable);
         }
 
-        public IDictionary DeserializeFundTable()
-        {            
+        private void InitializeFullFundTableFileName()
+        {
             var currentDomain = AppDomain.CurrentDomain;
             var baseDirectory = currentDomain.BaseDirectory;
-            var fullFundTableFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeFundTableFileName);
+            FullFundTableFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeFundTableFileName);
+        }
 
-            using var sr = new StreamReader(fullFundTableFileName);
+        public IDictionary DeserializeFundTable()
+        {
+            InitializeFullFundTableFileName();
+
+            using var sr = new StreamReader(FullFundTableFileName);
             using JsonReader reader = new JsonTextReader(sr);
 
-            var serializer = new JsonSerializer {Formatting = Formatting.Indented};
             return serializer.Deserialize<IDictionary>(reader);
         }
     }

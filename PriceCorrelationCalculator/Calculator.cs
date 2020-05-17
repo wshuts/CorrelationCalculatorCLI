@@ -8,8 +8,7 @@ namespace PriceCorrelationCalculator
 {
     public class Calculator
     {
-        private const string FundTableFolder = @"FundTable\";
-        private const string FundTableFileName = @"FundTable.json";
+        private const string RelativeFundTableFileName = @"FundTable\FundTable.json";
         private readonly FileStream calculationParametersFileStream;
         private CalculationParameters[] allCalculationParameters;
 
@@ -66,12 +65,28 @@ namespace PriceCorrelationCalculator
 
         public void SerializeFundTable()
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
-            var serializer = new JsonSerializer {Formatting = Formatting.Indented};
+            var currentDomain = AppDomain.CurrentDomain;
+            var baseDirectory = currentDomain.BaseDirectory;
+            var fullFundTableFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeFundTableFileName);
 
-            using var sw = new StreamWriter(FundTableFolder + FundTableFileName);
+            using var sw = new StreamWriter(fullFundTableFileName);
             using JsonWriter writer = new JsonTextWriter(sw);
+
+            var serializer = new JsonSerializer {Formatting = Formatting.Indented};
             serializer.Serialize(writer, FundTable);
+        }
+
+        public IDictionary DeserializeFundTable()
+        {            
+            var currentDomain = AppDomain.CurrentDomain;
+            var baseDirectory = currentDomain.BaseDirectory;
+            var fullFundTableFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeFundTableFileName);
+
+            using var sr = new StreamReader(fullFundTableFileName);
+            using JsonReader reader = new JsonTextReader(sr);
+
+            var serializer = new JsonSerializer {Formatting = Formatting.Indented};
+            return serializer.Deserialize<IDictionary>(reader);
         }
     }
 }

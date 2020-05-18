@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CalculationParameterReader\CalculationParameterReader.csproj" />
+    <ProjectReference Include="..\ParameterToolbox\ParameterToolbox.csproj" />
   </ItemGroup>
 
   <ItemGroup>

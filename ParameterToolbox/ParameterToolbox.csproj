@@ -10,11 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CalculationParameters\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="CalculationParameters\CalculationParameters001.json">
+    <None Update="Parameters\Parameters001.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using PriceCorrelationCalculator;
@@ -8,18 +6,18 @@ namespace PriceCorrelationCalculatorTest
 {
     public class CalculatorTests
     {
-        private const string CalculationParametersFolder = @"CalculationParameters\";
-        private const string ParameterFileNameArg = @"CalculationParameters001.json";
+        private const string ParametersFolder = @"Parameters\";
+        private const string ParameterFileNameArg = @"Parameters001.json";
         private Calculator calculator;
 
-        public static FileStream CalculationParametersFileStream { get; private set; }
+        public static FileStream ParametersFileStream { get; private set; }
 
         [SetUp]
         public void Setup()
         {
-            const string parameterFileName = CalculationParametersFolder + ParameterFileNameArg;
-            CalculationParametersFileStream = new FileStream(parameterFileName, FileMode.Open, FileAccess.Read);
-            calculator = new Calculator(CalculationParametersFileStream);
+            const string parameterFileName = ParametersFolder + ParameterFileNameArg;
+            ParametersFileStream = new FileStream(parameterFileName, FileMode.Open, FileAccess.Read);
+            calculator = new Calculator(ParametersFileStream);
         }
 
         [Test]
@@ -53,12 +51,12 @@ namespace PriceCorrelationCalculatorTest
             calculator.SerializeFundTable();
 
             var fundTable = calculator.DeserializeFundTable();
-            
+
             Assert.NotNull(fundTable);
 
             const string expected = "0573";
             var actual = fundTable["Windsor II Fund Adm      "];
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

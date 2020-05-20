@@ -8,18 +8,18 @@ namespace ParameterToolbox
 {
     public class Parameters
     {
+        private const string RelativeParametersFileName = @"Parameters\Parameters001.json";
+        private readonly JsonSerializer serializer;
+
         public Parameters()
         {
             serializer = new JsonSerializer {Formatting = Formatting.Indented};
         }
 
-        private const string RelativeParametersFileName = @"Parameters\Parameters001.json";
-        private readonly JsonSerializer serializer;
-
         public DateTime EndDate { get; set; }
         public IList Funds { get; set; } = new List<Fund>();
         public DateTime StartDate { get; set; }
-        public string FullParametersFileName { get; private set; }
+        [JsonIgnore] public string FullParametersFileName { get; private set; }
 
         public void Serialize()
         {

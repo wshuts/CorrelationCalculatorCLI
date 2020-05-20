@@ -9,17 +9,12 @@ namespace ParameterToolbox
     public class Parameters
     {
         private const string RelativeParametersFileName = @"Parameters\Parameters001.json";
-        private readonly JsonSerializer serializer;
-
-        public Parameters()
-        {
-            serializer = new JsonSerializer {Formatting = Formatting.Indented};
-        }
+        private static readonly JsonSerializer Serializer = new JsonSerializer {Formatting = Formatting.Indented};
 
         public DateTime EndDate { get; set; }
         public IList Funds { get; set; } = new List<Fund>();
         public DateTime StartDate { get; set; }
-        [JsonIgnore] public string FullParametersFileName { get; private set; }
+        [JsonIgnore] public static string FullParametersFileName { get; private set; }
 
         public void Serialize()
         {
@@ -28,24 +23,24 @@ namespace ParameterToolbox
             using var sw = new StreamWriter(FullParametersFileName);
             using JsonWriter writer = new JsonTextWriter(sw);
 
-            serializer.Serialize(writer, this);
+            Serializer.Serialize(writer, this);
         }
 
-        private void InitializeFullParametersFileName()
+        private static void InitializeFullParametersFileName()
         {
             var currentDomain = AppDomain.CurrentDomain;
             var baseDirectory = currentDomain.BaseDirectory;
             FullParametersFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeParametersFileName);
         }
 
-        public Parameters Deserialize()
+        public static Parameters Deserialize()
         {
             InitializeFullParametersFileName();
 
             using var sr = new StreamReader(FullParametersFileName);
             using JsonReader reader = new JsonTextReader(sr);
 
-            return serializer.Deserialize<Parameters>(reader);
+            return Serializer.Deserialize<Parameters>(reader);
         }
     }
 }

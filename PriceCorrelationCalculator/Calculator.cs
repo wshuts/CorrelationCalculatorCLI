@@ -25,6 +25,10 @@ namespace PriceCorrelationCalculator
 
         public IList Funds { get; set; } = new ArrayList();
 
+        public DateTime EndDate { get; set; }
+
+        public DateTime StartDate { get; set; }
+
         public void CalculateCorrelation()
         {
             throw new NotImplementedException();
@@ -55,6 +59,8 @@ namespace PriceCorrelationCalculator
         {
             var parameters = Parameters.Deserialize();
             Funds = parameters.Funds;
+            StartDate = parameters.StartDate;
+            EndDate = parameters.EndDate;
         }
 
         public void SerializeFundTable()

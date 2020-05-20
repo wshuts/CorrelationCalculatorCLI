@@ -31,7 +31,15 @@ namespace PriceCorrelationCalculator
 
         public void CalculateCorrelation()
         {
-            throw new NotImplementedException();
+            foreach(Fund firstFund in Funds)
+            {
+                firstFund.CorrelationCoefficients.Clear();
+                foreach(Fund secondFund in Funds)
+                {
+                    var correlationCoefficient=Statistics.Correlation(firstFund.Vector,secondFund.Vector);
+                    firstFund.CorrelationCoefficients.Add(secondFund.FundName,correlationCoefficient);
+                }
+            }
         }
 
         public void InitializeFundTable()

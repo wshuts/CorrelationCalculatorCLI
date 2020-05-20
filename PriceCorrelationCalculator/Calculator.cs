@@ -2,18 +2,17 @@
 using System.Collections;
 using System.IO;
 using Newtonsoft.Json;
+using ParameterToolbox;
 
 namespace PriceCorrelationCalculator
 {
     public class Calculator
     {
         private const string RelativeFundTableFileName = @"FundTable\FundTable.json";
-        private readonly FileStream parametersFileStream;
         private readonly JsonSerializer serializer;
 
-        public Calculator(FileStream parametersFileStream)
+        public Calculator()
         {
-            this.parametersFileStream = parametersFileStream;
             PriceServer = new PriceServer();
             serializer = new JsonSerializer {Formatting = Formatting.Indented};
         }
@@ -24,7 +23,7 @@ namespace PriceCorrelationCalculator
 
         public IDictionary FundTable { get; set; } = new SortedList();
 
-        public IList SelectedFunds { get; set; } = new ArrayList();
+        public IList Funds { get; set; } = new ArrayList();
 
         public void CalculateCorrelation()
         {
@@ -54,7 +53,8 @@ namespace PriceCorrelationCalculator
 
         public void ReadCalculationParameters()
         {
-            
+            var parameters = Parameters.Deserialize();
+            Funds = parameters.Funds;
         }
 
         public void SerializeFundTable()

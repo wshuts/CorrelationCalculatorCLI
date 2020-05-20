@@ -1,5 +1,6 @@
-using System.IO;
+using System.Diagnostics;
 using NUnit.Framework;
+using ParameterToolbox;
 using PriceCorrelationCalculator;
 
 namespace PriceCorrelationCalculatorTest
@@ -10,16 +11,10 @@ namespace PriceCorrelationCalculatorTest
         [SetUp]
         public void Setup()
         {
-            const string parameterFileName = ParametersFolder + ParameterFileNameArg;
-            ParametersFileStream = new FileStream(parameterFileName, FileMode.Open, FileAccess.Read);
-            calculator = new Calculator(ParametersFileStream);
+            calculator = new Calculator();
         }
 
-        private const string ParametersFolder = @"Parameters\";
-        private const string ParameterFileNameArg = @"Parameters001.json";
         private Calculator calculator;
-
-        public static FileStream ParametersFileStream { get; private set; }
 
         [Test]
         public void CalculateCorrelationIsImplemented()
@@ -31,8 +26,13 @@ namespace PriceCorrelationCalculatorTest
         public void CanReadCalculationParameters()
         {
             calculator.ReadCalculationParameters();
-            const int expected = 5;
-            var actual = calculator.SelectedFunds.Count;
+            var funds = calculator.Funds;
+
+            var fund = (Fund)funds[0];
+            Assert.NotNull(fund);
+
+            const string expected = "Windsor II Fund Adm      ";
+            var actual = fund.FundName;
             Assert.AreEqual(expected, actual);
         }
 

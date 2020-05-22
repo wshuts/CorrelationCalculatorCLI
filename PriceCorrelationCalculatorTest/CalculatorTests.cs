@@ -79,5 +79,18 @@ namespace PriceCorrelationCalculatorTest
             var actual = firstFundCorrelationCoefficients[0];
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void CanRetrievePriceInfo()
+        {
+            calculator.ReadCalculationParameters();
+            calculator.RetrievePriceInfo();
+            var priceServer = calculator.PriceServer;
+            var priceInfo = priceServer.PriceInfo;
+
+            const int expected = 84;
+            var actual = priceInfo.Count;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

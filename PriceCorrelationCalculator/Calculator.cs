@@ -98,5 +98,27 @@ namespace PriceCorrelationCalculator
 
             return serializer.Deserialize<IDictionary>(reader);
         }
+
+        public void RetrievePriceInfo()
+        {
+            foreach(var fund in Funds)
+            {
+                var fundNumber=fund.FundNumber;
+                PriceServer.RetrievePriceInfo(fundNumber,StartDate,EndDate);
+				
+                fund.PriceInfo.Clear();		
+                foreach(DictionaryEntry dE in PriceServer.PriceInfo)
+                {
+                    fund.PriceInfo.Add(dE.Key,dE.Value);
+                }
+
+                InitializePriceVector(fund);
+            }
+        }
+
+        private static void InitializePriceVector(Fund fund)
+        {
+            fund.InitializePriceVector();
+        }
     }
 }

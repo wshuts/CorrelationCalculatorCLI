@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using ParameterToolbox;
@@ -23,7 +24,7 @@ namespace PriceCorrelationCalculator
 
         public IDictionary FundTable { get; set; } = new SortedList();
 
-        public IList Funds { get; set; } = new ArrayList();
+        public IList<Fund> Funds { get; set; } = new List<Fund>();
 
         public DateTime EndDate { get; set; }
 

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace ParameterToolbox
@@ -14,9 +13,9 @@ namespace ParameterToolbox
 
         public string FundName { get; set; }
         public string FundNumber { get; set; }
-        [JsonIgnore] public IDictionary CorrelationCoefficients { get; set; } = new SortedList();
+        [JsonIgnore] public IDictionary<string, double> CorrelationCoefficients { get; set; } = new SortedList<string, double>();
         [JsonIgnore] public IList<double> PriceVector { get; set; } = new List<double>();
-        [JsonIgnore] public IDictionary PriceInfo { get; set; } = new SortedList();
+        [JsonIgnore] public IDictionary<string, string> PriceInfo { get; set; } = new SortedList<string, string>();
 
         public void InitializePriceVector()
         {

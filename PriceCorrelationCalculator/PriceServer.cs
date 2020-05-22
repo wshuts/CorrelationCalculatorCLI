@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Security.Authentication;
@@ -8,8 +9,8 @@ namespace PriceCorrelationCalculator
 {
     public class PriceServer
     {
-        public IDictionary FundTable { get; set; } = new SortedList();
-        public IDictionary PriceInfo { get; set; } = new SortedList();
+        public IDictionary<string, string> FundTable { get; set; } = new SortedList<string, string>();
+        public IDictionary<string, string> PriceInfo { get; set; } = new SortedList<string, string>();
 
         public void GetFundTable()
         {

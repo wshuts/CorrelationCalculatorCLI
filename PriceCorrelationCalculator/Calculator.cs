@@ -48,8 +48,8 @@ namespace PriceCorrelationCalculator
             PriceServer.GetFundTable();
 
             FundTable.Clear();
-            foreach (DictionaryEntry dictionaryEntry in PriceServer.FundTable)
-                FundTable.Add(dictionaryEntry.Key, dictionaryEntry.Value);
+            foreach (var (key, value) in PriceServer.FundTable)
+                FundTable.Add(key, value);
 
             RemoveMoneyMarketFunds();
         }
@@ -107,9 +107,9 @@ namespace PriceCorrelationCalculator
                 PriceServer.RetrievePriceInfo(fundNumber,StartDate,EndDate);
 				
                 fund.PriceInfo.Clear();		
-                foreach(DictionaryEntry dE in PriceServer.PriceInfo)
+                foreach(var (key, value) in PriceServer.PriceInfo)
                 {
-                    fund.PriceInfo.Add(dE.Key,dE.Value);
+                    fund.PriceInfo.Add(key,value);
                 }
 
                 InitializePriceVector(fund);

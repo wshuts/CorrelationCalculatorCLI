@@ -1,6 +1,4 @@
-using System.Diagnostics;
 using NUnit.Framework;
-using ParameterToolbox;
 using PriceCorrelationCalculator;
 
 namespace PriceCorrelationCalculatorTest
@@ -37,6 +35,19 @@ namespace PriceCorrelationCalculatorTest
         }
 
         [Test]
+        public void CanRetrievePriceInfo()
+        {
+            calculator.ReadCalculationParameters();
+            calculator.RetrievePriceInfo();
+            var priceServer = calculator.PriceServer;
+            var priceInfo = priceServer.PriceInfo;
+
+            const int expected = 84;
+            var actual = priceInfo.Count;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void CanSerializeFundTable()
         {
             calculator.InitializeFundTable();
@@ -64,33 +75,25 @@ namespace PriceCorrelationCalculatorTest
         public void VerifyCorrelationCoefficients()
         {
             calculator.ReadCalculationParameters();
+            calculator.RetrievePriceInfo();
             calculator.CalculateCorrelation();
-            
+
             var firstFund = calculator.Funds[0];
             Assert.NotNull(firstFund);
-            
+
             var secondFund = calculator.Funds[1];
             Assert.NotNull(secondFund);
-            
+
             var firstFundCorrelationCoefficients = firstFund.CorrelationCoefficients;
-            var secondFundCorrelationCoefficients = secondFund.CorrelationCoefficients;
 
-            const double expected = 1.0;
-            var actual = firstFundCorrelationCoefficients[0];
-            Assert.AreEqual(expected, actual);
-        }
+            const double expected1 = 1.0;
+            var actual1 = firstFundCorrelationCoefficients[firstFund.FundName];
+            Assert.AreEqual(expected1, actual1);
 
-        [Test]
-        public void CanRetrievePriceInfo()
-        {
-            calculator.ReadCalculationParameters();
-            calculator.RetrievePriceInfo();
-            var priceServer = calculator.PriceServer;
-            var priceInfo = priceServer.PriceInfo;
-
-            const int expected = 84;
-            var actual = priceInfo.Count;
-            Assert.AreEqual(expected, actual);
+            const double expected2 = 0.9967;
+            var actual2 = firstFundCorrelationCoefficients[secondFund.FundName];
+            const double delta = 0.0001;
+            Assert.AreEqual(expected2, actual2, delta);
         }
     }
 }

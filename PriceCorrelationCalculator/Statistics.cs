@@ -1,88 +1,57 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PriceCorrelationCalculator
 {
     public class Statistics
     {
-        public static double Mean(IList vector)
+        public static double Mean(IList<double> vector)
         {
-            double sum=0;
-            double mean;
+            var sum = vector.Sum();
 
-            foreach(double element in vector)
-            {
-                sum=sum+element;
-            }
-			
-            mean=sum/vector.Count;
+            var mean = sum / vector.Count;
             return mean;
         }
-		
-        public static double StandardDeviation(IList vector)
+
+        public static double StandardDeviation(IList<double> vector)
         {
-            double mean;
-            double difference;
-            double square;
-            double sum=0;
-            double meanSquare;
-            double standardDeviation;
+            var mean = Mean(vector);
 
-            mean=Mean(vector);
-			
-            foreach(double element in vector)
-            {
-                difference=element-mean;
-                square=Math.Pow(difference,2.0);
-                sum=sum+square;
-            }
-			
-            meanSquare=sum/vector.Count;
-            standardDeviation=Math.Sqrt(meanSquare);
+            var sum = vector.Select(element => element - mean).Select(difference => Math.Pow(difference, 2.0)).Sum();
+
+            var meanSquare = sum / vector.Count;
+            var standardDeviation = Math.Sqrt(meanSquare);
             return standardDeviation;
-
         }
 
-        public static double Correlation(IList vector1,IList vector2)
+        public static double Correlation(IList<double> vector1, IList<double> vector2)
         {
-            double mean1;
-            double mean2;
-            double standardDeviation1;
-            double standardDeviation2;
-            IList differences1=new ArrayList();
-            IList differences2=new ArrayList();
+            IList<double> differences1 = new List<double>();
+            IList<double> differences2 = new List<double>();
+            IList<double> differenceProducts = new List<double>();
             int index;
-            IList differenceProducts=new ArrayList();
-            double correlation;
 
-            mean1=Mean(vector1);
-            mean2=Mean(vector2);
-            standardDeviation1=StandardDeviation(vector1);
-            standardDeviation2=StandardDeviation(vector2);
+            var mean1 = Mean(vector1);
+            var mean2 = Mean(vector2);
+            var standardDeviation1 = StandardDeviation(vector1);
+            var standardDeviation2 = StandardDeviation(vector2);
 
             differences1.Clear();
-            foreach(double element1 in vector1)
-            {
-                differences1.Add(element1-mean1);
-            }
-			
+            foreach (var element1 in vector1) differences1.Add(element1 - mean1);
+
             differences2.Clear();
-            foreach(double element2 in vector2)
-            {
-                differences2.Add(element2-mean2);
-            }
-			
+            foreach (var element2 in vector2) differences2.Add(element2 - mean2);
+
             differenceProducts.Clear();
-            for(index=0;index<differences1.Count;index++)
+            for (index = 0; index < differences1.Count; index++)
             {
                 var diff1 = differences1[index];
                 var diff2 = differences2[index];
-                if (diff1 == null) continue;
-                if (diff2 != null)
-                    differenceProducts.Add((double) diff1 * (double) diff2);
+                differenceProducts.Add(diff1 * diff2);
             }
-			
-            correlation=Mean(differenceProducts)/(standardDeviation1*standardDeviation2);
+
+            var correlation = Mean(differenceProducts) / (standardDeviation1 * standardDeviation2);
             return correlation;
         }
     }

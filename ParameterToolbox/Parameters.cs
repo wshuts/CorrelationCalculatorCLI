@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -12,7 +11,7 @@ namespace ParameterToolbox
         private static readonly JsonSerializer Serializer = new JsonSerializer {Formatting = Formatting.Indented};
 
         public DateTime EndDate { get; set; }
-        public IList Funds { get; set; } = new List<Fund>();
+        public IList<Fund> Funds { get; set; } = new List<Fund>();
         public DateTime StartDate { get; set; }
         [JsonIgnore] public static string FullParametersFileName { get; private set; }
 

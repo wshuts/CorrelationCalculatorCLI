@@ -28,7 +28,7 @@ namespace PriceCorrelationCalculatorTest
             calculator.ReadCalculationParameters();
             var funds = calculator.Funds;
 
-            var fund = (Fund)funds[0];
+            var fund = funds[0];
             Assert.NotNull(fund);
 
             const string expected = "Windsor II Fund Adm      ";
@@ -58,6 +58,26 @@ namespace PriceCorrelationCalculatorTest
             const int expected = 0;
             var actual = calculator.FundTable.Count;
             Assert.AreNotEqual(expected, actual);
+        }
+
+        [Test]
+        public void VerifyCorrelationCoefficients()
+        {
+            calculator.ReadCalculationParameters();
+            calculator.CalculateCorrelation();
+            
+            var firstFund = calculator.Funds[0];
+            Assert.NotNull(firstFund);
+            
+            var secondFund = calculator.Funds[1];
+            Assert.NotNull(secondFund);
+            
+            var firstFundCorrelationCoefficients = firstFund.CorrelationCoefficients;
+            var secondFundCorrelationCoefficients = secondFund.CorrelationCoefficients;
+
+            const double expected = 1.0;
+            var actual = firstFundCorrelationCoefficients[0];
+            Assert.AreEqual(expected, actual);
         }
     }
 }

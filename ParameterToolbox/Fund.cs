@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace ParameterToolbox
 {
@@ -7,7 +8,7 @@ namespace ParameterToolbox
         public string FundName { get; set; }
         public string FundNumber { get; set; }
         public IDictionary CorrelationCoefficients { get; set; } = new SortedList();
-        public IList Vector { get; set; }
+        public IList<double> PriceVector { get; set; }
 
         public Fund(string fundName, string fundNumber)
         {

@@ -10,6 +10,7 @@ namespace PriceCorrelationCalculator
     public class Calculator
     {
         private const string RelativeFundTableFileName = @"FundTable\FundTable.json";
+        private const string RelativeOutputFileName = @"Output\CorrelationCoefficients.xls";
         private readonly JsonSerializer serializer;
 
         public Calculator()
@@ -30,15 +31,17 @@ namespace PriceCorrelationCalculator
 
         public DateTime StartDate { get; set; }
 
+        public string FullOutputFileName { get; set; }
+
         public void CalculateCorrelation()
         {
-            foreach(var firstFund in Funds)
+            foreach (var firstFund in Funds)
             {
                 firstFund.CorrelationCoefficients.Clear();
-                foreach(var secondFund in Funds)
+                foreach (var secondFund in Funds)
                 {
-                    var correlationCoefficient=Statistics.Correlation(firstFund.PriceVector,secondFund.PriceVector);
-                    firstFund.CorrelationCoefficients.Add(secondFund.FundName,correlationCoefficient);
+                    var correlationCoefficient = Statistics.Correlation(firstFund.PriceVector, secondFund.PriceVector);
+                    firstFund.CorrelationCoefficients.Add(secondFund.FundName, correlationCoefficient);
                 }
             }
         }
@@ -89,6 +92,13 @@ namespace PriceCorrelationCalculator
             FullFundTableFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeFundTableFileName);
         }
 
+        private void InitializeFullOutputFileName()
+        {
+            var currentDomain = AppDomain.CurrentDomain;
+            var baseDirectory = currentDomain.BaseDirectory;
+            FullOutputFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeOutputFileName);
+        }
+
         public IDictionary DeserializeFundTable()
         {
             InitializeFullFundTableFileName();
@@ -101,16 +111,13 @@ namespace PriceCorrelationCalculator
 
         public void RetrievePriceInfo()
         {
-            foreach(var fund in Funds)
+            foreach (var fund in Funds)
             {
-                var fundNumber=fund.FundNumber;
-                PriceServer.RetrievePriceInfo(fundNumber,StartDate,EndDate);
-				
-                fund.PriceInfo.Clear();		
-                foreach(var (key, value) in PriceServer.PriceInfo)
-                {
-                    fund.PriceInfo.Add(key,value);
-                }
+                var fundNumber = fund.FundNumber;
+                PriceServer.RetrievePriceInfo(fundNumber, StartDate, EndDate);
+
+                fund.PriceInfo.Clear();
+                foreach (var (key, value) in PriceServer.PriceInfo) fund.PriceInfo.Add(key, value);
 
                 InitializePriceVector(fund);
             }
@@ -119,6 +126,25 @@ namespace PriceCorrelationCalculator
         private static void InitializePriceVector(Fund fund)
         {
             fund.InitializePriceVector();
+        }
+
+        public void GenerateOutputFile()
+        {
+            InitializeFullOutputFileName();
+
+            using var sw = new StreamWriter(FullOutputFileName);
+            sw.WriteLine("\t" + StartDate.ToShortDateString() + "\t" + EndDate.ToShortDateString());
+
+            foreach (var fund in Funds) sw.Write("\t" + fund.FundName);
+            sw.Write("\n");
+
+            foreach (var fund in Funds)
+            {
+                sw.Write(fund.FundName);
+                foreach (var correlationCoefficient in fund.CorrelationCoefficients.Values)
+                    sw.Write("\t" + correlationCoefficient.ToString("0.00"));
+                sw.Write("\n");
+            }
         }
     }
 }

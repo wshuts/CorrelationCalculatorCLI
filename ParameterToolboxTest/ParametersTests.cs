@@ -25,7 +25,8 @@ namespace ParameterToolboxTest
 
             var funds = new List<Fund> {fund1, fund2};
 
-            Parameters = new Parameters(JsonFactory.CreateJsonSerializer())
+            IJson jsonFactory = new JsonFactory();
+            Parameters = new Parameters(jsonFactory.CreateJsonSerializer())
                 {StartDate = startDate, EndDate = endDate, Funds = funds};
         }
 

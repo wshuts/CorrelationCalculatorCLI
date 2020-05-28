@@ -13,14 +13,17 @@ namespace ParameterToolbox
 
         public string FundName { get; set; }
         public string FundNumber { get; set; }
-        [JsonIgnore] public IDictionary<string, double> CorrelationCoefficients { get; set; } = new SortedList<string, double>();
+
+        [JsonIgnore]
+        public IDictionary<string, double> CorrelationCoefficients { get; set; } = new SortedList<string, double>();
+
         [JsonIgnore] public IList<double> PriceVector { get; set; } = new List<double>();
         [JsonIgnore] public IDictionary<string, string> PriceInfo { get; set; } = new SortedList<string, string>();
 
         public void InitializePriceVector()
         {
             PriceVector.Clear();
-            foreach (string price in PriceInfo.Values) PriceVector.Add(double.Parse(price));
+            foreach (var price in PriceInfo.Values) PriceVector.Add(double.Parse(price));
         }
     }
 }

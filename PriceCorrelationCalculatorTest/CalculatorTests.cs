@@ -72,6 +72,16 @@ namespace PriceCorrelationCalculatorTest
         }
 
         [Test]
+        public void GenerateOutputFileIsImplemented()
+        {
+            calculator.ReadCalculationParameters();
+            calculator.RetrievePriceInfo();
+            calculator.CalculateCorrelation();
+
+            Assert.DoesNotThrow(calculator.GenerateOutputFile);
+        }
+
+        [Test]
         public void VerifyCorrelationCoefficients()
         {
             calculator.ReadCalculationParameters();
@@ -94,16 +104,6 @@ namespace PriceCorrelationCalculatorTest
             var actual2 = firstFundCorrelationCoefficients[secondFund.FundName];
             const double delta = 0.0001;
             Assert.AreEqual(expected2, actual2, delta);
-        }
-
-        [Test]
-        public void GenerateOutputFileIsImplemented()
-        {            
-            calculator.ReadCalculationParameters();
-            calculator.RetrievePriceInfo();
-            calculator.CalculateCorrelation();
-
-            Assert.DoesNotThrow(calculator.GenerateOutputFile);
         }
     }
 }

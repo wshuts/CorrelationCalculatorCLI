@@ -1,10 +1,10 @@
 [
-    {
-        "SomeClass": {
-            "NameOfInt1": 99,
-            "NameOfInt2": 47
-        },
-        "NameOfString1": "Fleas",
-        "NameOfString2": "DogBone"
-    }
+	{
+		"SomeClass": {
+			"NameOfInt1": 99,
+			"NameOfInt2": 47
+		},
+		"NameOfString1": "Fleas",
+		"NameOfString2": "DogBone"
+	}
 ]

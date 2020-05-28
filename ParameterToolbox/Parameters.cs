@@ -9,12 +9,15 @@ namespace ParameterToolbox
     {
         private const string RelativeParametersFileName = @"Parameters\Parameters001.json";
 
-        public Parameters(JsonSerializer serializer)
+        public Parameters()
         {
-            Serializer = serializer;
+            StreamFactory = new StreamFactory();
+            JsonFactory = new JsonFactory();
         }
 
-        public JsonSerializer Serializer { get; set; }
+        public IStream StreamFactory { get; }
+        public IJson JsonFactory { get; }
+
         public DateTime EndDate { get; set; }
         public IList<Fund> Funds { get; set; } = new List<Fund>();
         public DateTime StartDate { get; set; }
@@ -23,11 +26,10 @@ namespace ParameterToolbox
         public void Serialize()
         {
             InitializeFullParametersFileName();
-
-            using var sw = new StreamWriter(FullParametersFileName);
-            using JsonWriter writer = new JsonTextWriter(sw);
-
-            Serializer.Serialize(writer, this);
+            using var streamWriter = StreamFactory.CreateStreamWriter(FullParametersFileName);
+            using var jsonWriter = JsonFactory.CreateJsonWriter(streamWriter);
+            var jsonSerializer = JsonFactory.CreateJsonSerializer();
+            jsonSerializer.Serialize(jsonWriter, this);
         }
 
         private static void InitializeFullParametersFileName()
@@ -40,11 +42,10 @@ namespace ParameterToolbox
         public Parameters Deserialize()
         {
             InitializeFullParametersFileName();
-
-            using var sr = new StreamReader(FullParametersFileName);
-            using JsonReader reader = new JsonTextReader(sr);
-
-            return Serializer.Deserialize<Parameters>(reader);
+            using var streamReader = StreamFactory.CreateStreamReader(FullParametersFileName);
+            using var jsonReader = JsonFactory.CreateJsonReader(streamReader);
+            var jsonSerializer = JsonFactory.CreateJsonSerializer();
+            return jsonSerializer.Deserialize<Parameters>(jsonReader);
         }
     }
 }

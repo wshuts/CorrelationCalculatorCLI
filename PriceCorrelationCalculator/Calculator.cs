@@ -69,7 +69,7 @@ namespace PriceCorrelationCalculator
 
         public void ReadCalculationParameters()
         {
-            var calculationParameters = new Parameters(JsonSerializer.Create());
+            var calculationParameters = new Parameters();
             var parameters = calculationParameters.Deserialize();
             Funds = parameters.Funds;
             StartDate = parameters.StartDate;

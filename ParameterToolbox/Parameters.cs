@@ -14,8 +14,7 @@ namespace ParameterToolbox
             Serializer = serializer;
         }
 
-        public static JsonSerializer Serializer { get; set; }
-
+        public JsonSerializer Serializer { get; set; }
         public DateTime EndDate { get; set; }
         public IList<Fund> Funds { get; set; } = new List<Fund>();
         public DateTime StartDate { get; set; }
@@ -38,7 +37,7 @@ namespace ParameterToolbox
             FullParametersFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeParametersFileName);
         }
 
-        public static Parameters Deserialize()
+        public Parameters Deserialize()
         {
             InitializeFullParametersFileName();
 

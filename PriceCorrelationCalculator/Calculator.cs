@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using ParameterToolbox;
 
 namespace PriceCorrelationCalculator
@@ -15,13 +14,11 @@ namespace PriceCorrelationCalculator
         {
             PriceServer = new PriceServer();
             StreamFactory = new StreamFactory();
-            JsonFactory = new JsonFactory();
         }
 
-        public IStream StreamFactory { get; }
-        public IJson JsonFactory { get; }
         public string FullFundTableFileName { get; private set; }
         public PriceServer PriceServer { get; set; }
+        public IStream StreamFactory { get; }
         public IDictionary FundTable { get; set; } = new SortedList();
         public IList<Fund> Funds { get; set; } = new List<Fund>();
         public DateTime EndDate { get; set; }
@@ -74,10 +71,7 @@ namespace PriceCorrelationCalculator
         public void SerializeFundTable()
         {
             SetFullFundTableFileName();
-            using var streamWriter = StreamFactory.CreateStreamWriter(FullFundTableFileName);
-            using var jsonWriter = JsonFactory.CreateJsonWriter(streamWriter);
-            var jsonSerializer = JsonFactory.CreateJsonSerializer();
-            jsonSerializer.Serialize(jsonWriter, FundTable);
+            JsonUtilities.Serialize(FullFundTableFileName, FundTable);
         }
 
         private void SetFullFundTableFileName()
@@ -93,10 +87,7 @@ namespace PriceCorrelationCalculator
         public IDictionary DeserializeFundTable()
         {
             SetFullFundTableFileName();
-            using var streamReader = StreamFactory.CreateStreamReader(FullFundTableFileName);
-            using var jsonReader = JsonFactory.CreateJsonReader(streamReader);
-            var jsonSerializer = JsonFactory.CreateJsonSerializer();
-            return jsonSerializer.Deserialize<IDictionary>(jsonReader);
+            return JsonUtilities.Deserialize<IDictionary>(FullFundTableFileName);
         }
 
         public void RetrievePriceInfo()
@@ -121,19 +112,19 @@ namespace PriceCorrelationCalculator
         public void GenerateOutputFile()
         {
             SetFullOutputFileName();
+            using var streamWriter = StreamFactory.CreateStreamWriter(FullOutputFileName);
 
-            using var sw = new StreamWriter(FullOutputFileName);
-            sw.WriteLine("\t" + StartDate.ToShortDateString() + "\t" + EndDate.ToShortDateString());
+            streamWriter.WriteLine("\t" + StartDate.ToShortDateString() + "\t" + EndDate.ToShortDateString());
 
-            foreach (var fund in Funds) sw.Write("\t" + fund.FundName);
-            sw.Write("\n");
+            foreach (var fund in Funds) streamWriter.Write("\t" + fund.FundName);
+            streamWriter.Write("\n");
 
             foreach (var fund in Funds)
             {
-                sw.Write(fund.FundName);
+                streamWriter.Write(fund.FundName);
                 foreach (var correlationCoefficient in fund.CorrelationCoefficients.Values)
-                    sw.Write("\t" + correlationCoefficient.ToString("0.00"));
-                sw.Write("\n");
+                    streamWriter.Write("\t" + correlationCoefficient.ToString("0.00"));
+                streamWriter.Write("\n");
             }
         }
     }

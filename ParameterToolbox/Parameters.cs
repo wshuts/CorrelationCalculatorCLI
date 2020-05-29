@@ -8,14 +8,6 @@ namespace ParameterToolbox
     {
         private const string RelativeParametersFileName = @"Parameters\Parameters001.json";
 
-        public Parameters()
-        {
-            StreamFactory = new StreamFactory();
-            JsonFactory = new JsonFactory();
-        }
-
-        public IStream StreamFactory { get; }
-        public IJson JsonFactory { get; }
         public DateTime EndDate { get; set; }
         public IList<Fund> Funds { get; set; } = new List<Fund>();
         public DateTime StartDate { get; set; }
@@ -24,10 +16,7 @@ namespace ParameterToolbox
         public void Serialize()
         {
             SetFullParametersFileName();
-            using var streamWriter = StreamFactory.CreateStreamWriter(FullParametersFileName);
-            using var jsonWriter = JsonFactory.CreateJsonWriter(streamWriter);
-            var jsonSerializer = JsonFactory.CreateJsonSerializer();
-            jsonSerializer.Serialize(jsonWriter, this);
+            JsonUtilities.Serialize(FullParametersFileName, this);
         }
 
         private static void SetFullParametersFileName()
@@ -38,10 +27,7 @@ namespace ParameterToolbox
         public Parameters Deserialize()
         {
             SetFullParametersFileName();
-            using var streamReader = StreamFactory.CreateStreamReader(FullParametersFileName);
-            using var jsonReader = JsonFactory.CreateJsonReader(streamReader);
-            var jsonSerializer = JsonFactory.CreateJsonSerializer();
-            return jsonSerializer.Deserialize<Parameters>(jsonReader);
+            return JsonUtilities.Deserialize<Parameters>(FullParametersFileName);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Newtonsoft.Json;
 
 namespace ParameterToolbox
@@ -17,7 +16,6 @@ namespace ParameterToolbox
 
         public IStream StreamFactory { get; }
         public IJson JsonFactory { get; }
-
         public DateTime EndDate { get; set; }
         public IList<Fund> Funds { get; set; } = new List<Fund>();
         public DateTime StartDate { get; set; }

@@ -25,8 +25,7 @@ namespace ParameterToolboxTest
 
             var funds = new List<Fund> {fund1, fund2};
 
-            Parameters = new Parameters()
-                {StartDate = startDate, EndDate = endDate, Funds = funds};
+            Parameters = new Parameters {StartDate = startDate, EndDate = endDate, Funds = funds};
         }
 
         [Test]

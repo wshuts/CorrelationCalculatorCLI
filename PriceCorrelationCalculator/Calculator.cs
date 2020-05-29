@@ -21,17 +21,11 @@ namespace PriceCorrelationCalculator
         public IStream StreamFactory { get; }
         public IJson JsonFactory { get; }
         public string FullFundTableFileName { get; private set; }
-
         public PriceServer PriceServer { get; set; }
-
         public IDictionary FundTable { get; set; } = new SortedList();
-
         public IList<Fund> Funds { get; set; } = new List<Fund>();
-
         public DateTime EndDate { get; set; }
-
         public DateTime StartDate { get; set; }
-
         public string FullOutputFileName { get; set; }
 
         public void CalculateCorrelation()

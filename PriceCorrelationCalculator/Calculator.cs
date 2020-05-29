@@ -79,30 +79,26 @@ namespace PriceCorrelationCalculator
 
         public void SerializeFundTable()
         {
-            InitializeFullFundTableFileName();
+            SetFullFundTableFileName();
             using var streamWriter = StreamFactory.CreateStreamWriter(FullFundTableFileName);
             using var jsonWriter = JsonFactory.CreateJsonWriter(streamWriter);
             var jsonSerializer = JsonFactory.CreateJsonSerializer();
             jsonSerializer.Serialize(jsonWriter, FundTable);
         }
 
-        private void InitializeFullFundTableFileName()
+        private void SetFullFundTableFileName()
         {
-            var currentDomain = AppDomain.CurrentDomain;
-            var baseDirectory = currentDomain.BaseDirectory;
-            FullFundTableFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeFundTableFileName);
+            FullFundTableFileName = FileUtilities.ConvertToAbsolutePath(RelativeFundTableFileName);
         }
 
-        private void InitializeFullOutputFileName()
+        private void SetFullOutputFileName()
         {
-            var currentDomain = AppDomain.CurrentDomain;
-            var baseDirectory = currentDomain.BaseDirectory;
-            FullOutputFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeOutputFileName);
+            FullOutputFileName = FileUtilities.ConvertToAbsolutePath(RelativeOutputFileName);
         }
 
         public IDictionary DeserializeFundTable()
         {
-            InitializeFullFundTableFileName();
+            SetFullFundTableFileName();
             using var streamReader = StreamFactory.CreateStreamReader(FullFundTableFileName);
             using var jsonReader = JsonFactory.CreateJsonReader(streamReader);
             var jsonSerializer = JsonFactory.CreateJsonSerializer();
@@ -130,7 +126,7 @@ namespace PriceCorrelationCalculator
 
         public void GenerateOutputFile()
         {
-            InitializeFullOutputFileName();
+            SetFullOutputFileName();
 
             using var sw = new StreamWriter(FullOutputFileName);
             sw.WriteLine("\t" + StartDate.ToShortDateString() + "\t" + EndDate.ToShortDateString());

@@ -25,23 +25,21 @@ namespace ParameterToolbox
 
         public void Serialize()
         {
-            InitializeFullParametersFileName();
+            SetFullParametersFileName();
             using var streamWriter = StreamFactory.CreateStreamWriter(FullParametersFileName);
             using var jsonWriter = JsonFactory.CreateJsonWriter(streamWriter);
             var jsonSerializer = JsonFactory.CreateJsonSerializer();
             jsonSerializer.Serialize(jsonWriter, this);
         }
 
-        private static void InitializeFullParametersFileName()
+        private static void SetFullParametersFileName()
         {
-            var currentDomain = AppDomain.CurrentDomain;
-            var baseDirectory = currentDomain.BaseDirectory;
-            FullParametersFileName = Path.Combine(baseDirectory ?? string.Empty, RelativeParametersFileName);
+            FullParametersFileName = FileUtilities.ConvertToAbsolutePath(RelativeParametersFileName);
         }
 
         public Parameters Deserialize()
         {
-            InitializeFullParametersFileName();
+            SetFullParametersFileName();
             using var streamReader = StreamFactory.CreateStreamReader(FullParametersFileName);
             using var jsonReader = JsonFactory.CreateJsonReader(streamReader);
             var jsonSerializer = JsonFactory.CreateJsonSerializer();

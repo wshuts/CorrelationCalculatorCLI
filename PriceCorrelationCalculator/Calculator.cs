@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
 using ParameterToolbox;
 
 namespace PriceCorrelationCalculator
@@ -11,14 +10,16 @@ namespace PriceCorrelationCalculator
     {
         private const string RelativeFundTableFileName = @"FundTable\FundTable.json";
         private const string RelativeOutputFileName = @"Output\CorrelationCoefficients.xls";
-        private readonly JsonSerializer serializer;
 
         public Calculator()
         {
             PriceServer = new PriceServer();
-            serializer = new JsonSerializer {Formatting = Formatting.Indented};
+            StreamFactory = new StreamFactory();
+            JsonFactory = new JsonFactory();
         }
 
+        public IStream StreamFactory { get; }
+        public IJson JsonFactory { get; }
         public string FullFundTableFileName { get; private set; }
 
         public PriceServer PriceServer { get; set; }
@@ -79,11 +80,10 @@ namespace PriceCorrelationCalculator
         public void SerializeFundTable()
         {
             InitializeFullFundTableFileName();
-
-            using var sw = new StreamWriter(FullFundTableFileName);
-            using JsonWriter writer = new JsonTextWriter(sw);
-
-            serializer.Serialize(writer, FundTable);
+            using var streamWriter = StreamFactory.CreateStreamWriter(FullFundTableFileName);
+            using var jsonWriter = JsonFactory.CreateJsonWriter(streamWriter);
+            var jsonSerializer = JsonFactory.CreateJsonSerializer();
+            jsonSerializer.Serialize(jsonWriter, FundTable);
         }
 
         private void InitializeFullFundTableFileName()
@@ -103,11 +103,10 @@ namespace PriceCorrelationCalculator
         public IDictionary DeserializeFundTable()
         {
             InitializeFullFundTableFileName();
-
-            using var sr = new StreamReader(FullFundTableFileName);
-            using JsonReader reader = new JsonTextReader(sr);
-
-            return serializer.Deserialize<IDictionary>(reader);
+            using var streamReader = StreamFactory.CreateStreamReader(FullFundTableFileName);
+            using var jsonReader = JsonFactory.CreateJsonReader(streamReader);
+            var jsonSerializer = JsonFactory.CreateJsonSerializer();
+            return jsonSerializer.Deserialize<IDictionary>(jsonReader);
         }
 
         public void RetrievePriceInfo()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using ParameterToolbox;
 
 namespace PriceCorrelationCalculator
@@ -114,11 +115,24 @@ namespace PriceCorrelationCalculator
             SetFullOutputFileName();
             using var streamWriter = StreamFactory.CreateStreamWriter(FullOutputFileName);
 
-            streamWriter.WriteLine("\t" + StartDate.ToShortDateString() + "\t" + EndDate.ToShortDateString());
+            WriteDates(streamWriter);
+            WriteColumnHeadings(streamWriter);
+            WriteRows(streamWriter);
+        }
 
+        private void WriteDates(TextWriter streamWriter)
+        {
+            streamWriter.WriteLine("\t" + StartDate.ToShortDateString() + "\t" + EndDate.ToShortDateString());
+        }
+
+        private void WriteColumnHeadings(TextWriter streamWriter)
+        {
             foreach (var fund in Funds) streamWriter.Write("\t" + fund.FundName);
             streamWriter.Write("\n");
+        }
 
+        private void WriteRows(TextWriter streamWriter)
+        {
             foreach (var fund in Funds)
             {
                 streamWriter.Write(fund.FundName);

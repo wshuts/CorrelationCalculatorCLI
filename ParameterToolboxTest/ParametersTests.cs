@@ -33,9 +33,11 @@ namespace ParameterToolboxTest
         [Test]
         public void CanMockStreamFactory()
         {
+            var streamWriterMock = new Mock<StreamWriter>(MockBehavior.Strict, "foo.txt").Object;
+
             var streamFactoryMock = new Mock<IStream>(MockBehavior.Strict);
             streamFactoryMock.Setup(s => s.CreateStreamWriter(It.IsAny<string>()))
-                .Returns(new Mock<StreamWriter>(MockBehavior.Strict, "foo.txt").Object);
+                .Returns(streamWriterMock);
 
             InitializeParameters();
             Parameters.Serialize();

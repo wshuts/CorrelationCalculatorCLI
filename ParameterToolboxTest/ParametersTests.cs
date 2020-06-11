@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Moq;
 using NUnit.Framework;
 using ParameterToolbox;
 
@@ -26,6 +28,26 @@ namespace ParameterToolboxTest
             var funds = new List<Fund> {fund1, fund2};
 
             Parameters = new Parameters {StartDate = startDate, EndDate = endDate, Funds = funds};
+        }
+
+        [Test]
+        public void CanMockStreamFactory()
+        {
+            var streamFactoryMock = new Mock<IStream>(MockBehavior.Strict);
+            streamFactoryMock.Setup(s => s.CreateStreamWriter(It.IsAny<string>()))
+                .Returns(new Mock<StreamWriter>(MockBehavior.Strict, "foo.txt").Object);
+
+            InitializeParameters();
+            Parameters.Serialize();
+
+            var parameters = Parameters.Deserialize();
+
+            var funds = parameters.Funds;
+            Assert.NotNull(funds);
+
+            var expected = Parameters.StartDate;
+            var actual = parameters.StartDate;
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

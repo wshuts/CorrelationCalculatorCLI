@@ -39,6 +39,8 @@ namespace ParameterToolboxTest
             streamFactoryMock.Setup(s => s.CreateStreamWriter(It.IsAny<string>()))
                 .Returns(streamWriterMock.Object);
 
+            JsonUtilities.StreamFactory = streamFactoryMock.Object;
+
             InitializeParameters();
             Parameters.Serialize();
 

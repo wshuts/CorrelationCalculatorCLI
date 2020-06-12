@@ -34,9 +34,9 @@ namespace ParameterToolboxTest
         public void GivenStreamFactoryMockCanSerializeParameters()
         {
             var streamFactoryMock = new Mock<IStream>(MockBehavior.Strict);
-            var memoryBuffer = new byte[1024];
+            var memoryBuffer = new byte[512];
 
-            var writeMemoryStream = new MemoryStream(memoryBuffer, true);
+            var writeMemoryStream = new MemoryStream(memoryBuffer);
             streamFactoryMock.Setup(s => s.CreateStreamWriter(It.IsAny<string>()))
                 .Returns(new StreamWriter(writeMemoryStream));
 

@@ -31,33 +31,21 @@ namespace ParameterToolboxTest
         }
 
         [Test]
-        public void CanMockStreamFactory()
+        public void GivenStreamFactoryMockCanSerializeParameters()
         {
-            using var memoryStream = new MemoryStream();
-            using var streamWriter = new StreamWriter(memoryStream);
-
             var streamFactoryMock = new Mock<IStream>(MockBehavior.Strict);
+            var memoryBuffer = new byte[1024];
+
+            var writeMemoryStream = new MemoryStream(memoryBuffer, true);
             streamFactoryMock.Setup(s => s.CreateStreamWriter(It.IsAny<string>()))
-                .Returns(streamWriter);
+                .Returns(new StreamWriter(writeMemoryStream));
+
+            var readMemoryStream = new MemoryStream(memoryBuffer);
+            streamFactoryMock.Setup(s => s.CreateStreamReader(It.IsAny<string>()))
+                .Returns(new StreamReader(readMemoryStream));
 
             JsonUtilities.StreamFactory = streamFactoryMock.Object;
 
-            InitializeParameters();
-            Parameters.Serialize();
-
-            var parameters = Parameters.Deserialize();
-
-            var funds = parameters.Funds;
-            Assert.NotNull(funds);
-
-            var expected = Parameters.StartDate;
-            var actual = parameters.StartDate;
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void CanSerializeParameters()
-        {
             InitializeParameters();
             Parameters.Serialize();
 

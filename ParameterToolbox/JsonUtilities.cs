@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace ParameterToolbox
+﻿namespace ParameterToolbox
 {
     public static class JsonUtilities
     {

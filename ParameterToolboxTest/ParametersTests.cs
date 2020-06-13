@@ -25,12 +25,11 @@ namespace ParameterToolboxTest
                 .Returns(new StreamReader(readMemoryStream));
 
             JsonUtilities.StreamFactory = streamFactoryMock.Object;
+            Parameters = ParametersFactory.CreateParametersForTesting();
 
-            Parameters = ParametersFactory.CreateParameters();
             Parameters.Serialize();
 
             var parameters = Parameters.Deserialize();
-
             var funds = parameters.Funds;
             Assert.NotNull(funds);
 

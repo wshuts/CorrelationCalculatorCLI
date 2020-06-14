@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using ParameterToolbox;
 
-namespace ParameterToolbox
+namespace ParameterToolboxTest
 {
     public static class ParametersFactory
     {

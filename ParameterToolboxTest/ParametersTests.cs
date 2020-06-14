@@ -8,33 +8,18 @@ namespace ParameterToolboxTest
     [TestFixture]
     public class ParametersTests
     {
-        public byte[] MemoryBuffer { get; } = new byte[512];
-        public Mock<IStream> StreamFactoryMock { get; } = new Mock<IStream>(MockBehavior.Strict);
-        public Parameters Parameters { get; private set; }
-
-        [Test]
-        public void GivenStreamFactoryMockCanSerializeParameters()
-        {
-            StreamFactoryMockSetup();
-            JsonUtilities.StreamFactory = StreamFactoryMock.Object;
-            Parameters = ParametersFactory.CreateParametersForTesting();
-
-            Parameters.Serialize();
-
-            var parameters = Parameters.Deserialize();
-            var funds = parameters.Funds;
-            Assert.NotNull(funds);
-
-            var expected = Parameters.StartDate;
-            var actual = parameters.StartDate;
-            Assert.AreEqual(expected, actual);
-        }
-
-        private void StreamFactoryMockSetup()
+        [SetUp]
+        public void StreamFactoryMockSetup()
         {
             CreateStreamWriterSetup();
             CreateStreamReaderSetup();
         }
+
+        public byte[] MemoryBuffer { get; } = new byte[512];
+
+        public Mock<IStream> StreamFactoryMock { get; } = new Mock<IStream>(MockBehavior.Strict);
+
+        public Parameters Parameters { get; private set; }
 
         private void CreateStreamReaderSetup()
         {
@@ -50,6 +35,23 @@ namespace ParameterToolboxTest
             var streamWriter = new StreamWriter(writeMemoryStream);
             StreamFactoryMock.Setup(s => s.CreateStreamWriter(It.IsAny<string>()))
                 .Returns(streamWriter);
+        }
+
+        [Test]
+        public void GivenStreamFactoryMockCanSerializeParameters()
+        {
+            JsonUtilities.StreamFactory = StreamFactoryMock.Object;
+            Parameters = ParametersFactory.CreateParametersForTesting();
+
+            Parameters.Serialize();
+
+            var parameters = Parameters.Deserialize();
+            var funds = parameters.Funds;
+            Assert.NotNull(funds);
+
+            var expected = Parameters.StartDate;
+            var actual = parameters.StartDate;
+            Assert.AreEqual(expected, actual);
         }
     }
 }

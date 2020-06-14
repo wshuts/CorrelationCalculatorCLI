@@ -32,13 +32,24 @@ namespace ParameterToolboxTest
 
         private void StreamFactoryMockSetup()
         {
-            var writeMemoryStream = new MemoryStream(MemoryBuffer);
-            StreamFactoryMock.Setup(s => s.CreateStreamWriter(It.IsAny<string>()))
-                .Returns(new StreamWriter(writeMemoryStream));
+            CreateStreamWriterSetup();
+            CreateStreamReaderSetup();
+        }
 
+        private void CreateStreamReaderSetup()
+        {
             var readMemoryStream = new MemoryStream(MemoryBuffer);
+            var streamReader = new StreamReader(readMemoryStream);
             StreamFactoryMock.Setup(s => s.CreateStreamReader(It.IsAny<string>()))
-                .Returns(new StreamReader(readMemoryStream));
+                .Returns(streamReader);
+        }
+
+        private void CreateStreamWriterSetup()
+        {
+            var writeMemoryStream = new MemoryStream(MemoryBuffer);
+            var streamWriter = new StreamWriter(writeMemoryStream);
+            StreamFactoryMock.Setup(s => s.CreateStreamWriter(It.IsAny<string>()))
+                .Returns(streamWriter);
         }
     }
 }

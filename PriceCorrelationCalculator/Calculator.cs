@@ -108,8 +108,9 @@ namespace PriceCorrelationCalculator
                 var fundNumber = fund.FundNumber;
                 PriceServer.RetrievePriceInfo(fundNumber, StartDate, EndDate);
 
-                fund.PriceInfo.Clear();
-                foreach (var (key, value) in PriceServer.PriceInfo) fund.PriceInfo.Add(key, value);
+                var fundPriceInfo = fund.PriceInfo;
+                fundPriceInfo.Clear();
+                foreach (var (key, value) in PriceServer.PriceInfo) fundPriceInfo.Add(key, value);
 
                 InitializePriceVector(fund);
             }

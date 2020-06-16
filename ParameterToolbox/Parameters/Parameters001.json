@@ -1,14 +1,14 @@
 {
-  "EndDate": "2020-05-01T00:00:00",
-  "Funds": [
-    {
-      "FundName": "Windsor II Fund Adm      ",
-      "FundNumber": "0573"
-    },
-    {
-      "FundName": "Total Stock Mkt Idx Adm  ",
-      "FundNumber": "0585"
-    }
-  ],
-  "StartDate": "2020-01-01T00:00:00"
+	"EndDate": "2020-05-01T00:00:00",
+	"Funds": [
+		{
+			"FundName": "Windsor II Fund Adm      ",
+			"FundNumber": "0573"
+		},
+		{
+			"FundName": "Total Stock Mkt Idx Adm  ",
+			"FundNumber": "0585"
+		}
+	],
+	"StartDate": "2020-01-01T00:00:00"
 }

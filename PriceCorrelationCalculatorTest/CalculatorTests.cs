@@ -24,8 +24,8 @@ namespace PriceCorrelationCalculatorTest
         public void CanReadCalculationParameters()
         {
             calculator.ReadCalculationParameters();
-            var funds = calculator.Funds;
 
+            var funds = calculator.Funds;
             var fund = funds[0];
             Assert.NotNull(fund);
 

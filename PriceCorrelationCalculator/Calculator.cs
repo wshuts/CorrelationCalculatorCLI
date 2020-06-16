@@ -72,11 +72,12 @@ namespace PriceCorrelationCalculator
 
         public void ReadCalculationParameters()
         {
-            var calculationParameters = new Parameters();
-            var parameters = calculationParameters.Deserialize();
-            Funds = parameters.Funds;
-            StartDate = parameters.StartDate;
-            EndDate = parameters.EndDate;
+            var parameters = ParametersFactory.CreateParameters();
+            var calculationParameters = parameters.Deserialize();
+
+            Funds = calculationParameters.Funds;
+            StartDate = calculationParameters.StartDate;
+            EndDate = calculationParameters.EndDate;
         }
 
         public void SerializeFundTable()

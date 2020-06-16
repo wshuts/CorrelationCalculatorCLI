@@ -2,7 +2,7 @@
 
 namespace ParameterToolbox
 {
-    public class StreamFactory : IStream
+    public class StreamFactory : IStreamFactory
     {
         public StreamWriter CreateStreamWriter(string path)
         {

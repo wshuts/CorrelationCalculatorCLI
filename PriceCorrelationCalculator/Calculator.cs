@@ -23,7 +23,7 @@ namespace PriceCorrelationCalculator
 
         public string FullFundTableFileName { get; private set; }
         public IPriceServerFactory PriceServerFactory { get; set; }
-        public IStream StreamFactory { get; }
+        public IStreamFactory StreamFactory { get; }
         public IDictionary FundTable { get; set; } = new SortedList();
         public IList<Fund> Funds { get; set; } = new List<Fund>();
         public DateTime EndDate { get; set; }

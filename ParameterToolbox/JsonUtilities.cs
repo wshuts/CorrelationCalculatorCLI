@@ -2,7 +2,7 @@
 {
     public static class JsonUtilities
     {
-        public static IStream StreamFactory { get; set; } = new StreamFactory();
+        public static IStreamFactory StreamFactory { get; set; } = new StreamFactory();
         public static IJson JsonFactory { get; set; } = new JsonFactory();
 
         public static void Serialize(string fullFileName, object source)

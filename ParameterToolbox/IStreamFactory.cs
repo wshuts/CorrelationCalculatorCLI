@@ -2,7 +2,7 @@
 
 namespace ParameterToolbox
 {
-    public interface IStream
+    public interface IStreamFactory
     {
         public StreamWriter CreateStreamWriter(string path);
         public StreamReader CreateStreamReader(string path);

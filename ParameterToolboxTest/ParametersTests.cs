@@ -17,7 +17,7 @@ namespace ParameterToolboxTest
 
         public byte[] MemoryBuffer { get; } = new byte[512];
 
-        public Mock<IStream> StreamFactoryMock { get; } = new Mock<IStream>(MockBehavior.Strict);
+        public Mock<IStreamFactory> StreamFactoryMock { get; } = new Mock<IStreamFactory>(MockBehavior.Strict);
 
         public Parameters Parameters { get; private set; }
 

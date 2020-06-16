@@ -34,11 +34,17 @@ namespace PriceCorrelationCalculator
         {
             foreach (var firstFund in Funds)
             {
-                firstFund.CorrelationCoefficients.Clear();
+                var firstFundCorrelationCoefficients = firstFund.CorrelationCoefficients;
+                firstFundCorrelationCoefficients.Clear();
+
                 foreach (var secondFund in Funds)
                 {
-                    var correlationCoefficient = Statistics.Correlation(firstFund.PriceVector, secondFund.PriceVector);
-                    firstFund.CorrelationCoefficients.Add(secondFund.FundName, correlationCoefficient);
+                    var firstFundPriceVector = firstFund.PriceVector;
+                    var secondFundPriceVector = secondFund.PriceVector;
+                    var correlationCoefficient = Statistics.Correlation(firstFundPriceVector, secondFundPriceVector);
+
+                    var secondFundFundName = secondFund.FundName;
+                    firstFundCorrelationCoefficients.Add(secondFundFundName, correlationCoefficient);
                 }
             }
         }

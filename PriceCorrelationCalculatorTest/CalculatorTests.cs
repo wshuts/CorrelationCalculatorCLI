@@ -12,6 +12,7 @@ namespace PriceCorrelationCalculatorTest
         public void Setup()
         {
             Calculator = new Calculator();
+            ParametersForTesting = ParametersFactory.CreateParametersForTesting();
         }
 
         public Calculator Calculator { get; private set; }
@@ -26,8 +27,6 @@ namespace PriceCorrelationCalculatorTest
         [Test]
         public void CanReadCalculationParameters()
         {
-            ParametersForTesting = ParametersFactory.CreateParametersForTesting();
-
             Calculator.ReadCalculationParameters(ParametersForTesting);
 
             var funds = Calculator.Funds;

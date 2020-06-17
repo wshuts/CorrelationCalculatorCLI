@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using ParameterToolbox;
+using ParameterToolboxTest;
 using PriceCorrelationCalculator;
 
 namespace PriceCorrelationCalculatorTest
@@ -9,23 +11,26 @@ namespace PriceCorrelationCalculatorTest
         [SetUp]
         public void Setup()
         {
-            calculator = new Calculator();
+            Calculator = new Calculator();
         }
 
-        private Calculator calculator;
+        public Calculator Calculator { get; private set; }
+        public Parameters ParametersForTesting { get; private set; }
 
         [Test]
         public void CalculateCorrelationIsImplemented()
         {
-            Assert.DoesNotThrow(calculator.CalculateCorrelation);
+            Assert.DoesNotThrow(Calculator.CalculateCorrelation);
         }
 
         [Test]
         public void CanReadCalculationParameters()
         {
-            calculator.ReadCalculationParameters();
+            ParametersForTesting = ParametersFactory.CreateParametersForTesting();
 
-            var funds = calculator.Funds;
+            Calculator.ReadCalculationParameters(ParametersForTesting);
+
+            var funds = Calculator.Funds;
             var fund = funds[0];
             Assert.NotNull(fund);
 
@@ -37,11 +42,11 @@ namespace PriceCorrelationCalculatorTest
         [Test]
         public void CanRetrievePriceInfo()
         {
-            calculator.ReadCalculationParameters();
+            Calculator.ReadCalculationParameters(ParametersForTesting);
 
-            calculator.RetrievePriceInfo();
+            Calculator.RetrievePriceInfo();
 
-            var priceServer = calculator.PriceServer;
+            var priceServer = Calculator.PriceServer;
             var priceInfo = priceServer.PriceInfo;
             const int expected = 84;
             var actual = priceInfo.Count;
@@ -51,10 +56,10 @@ namespace PriceCorrelationCalculatorTest
         [Test]
         public void CanSerializeFundTable()
         {
-            calculator.InitializeFundTable();
-            calculator.SerializeFundTable();
+            Calculator.InitializeFundTable();
+            Calculator.SerializeFundTable();
 
-            var fundTable = calculator.DeserializeFundTable();
+            var fundTable = Calculator.DeserializeFundTable();
 
             Assert.NotNull(fundTable);
 
@@ -66,33 +71,33 @@ namespace PriceCorrelationCalculatorTest
         [Test]
         public void FundTableGetsInitialized()
         {
-            calculator.InitializeFundTable();
+            Calculator.InitializeFundTable();
             const int expected = 0;
-            var actual = calculator.FundTable.Count;
+            var actual = Calculator.FundTable.Count;
             Assert.AreNotEqual(expected, actual);
         }
 
         [Test]
         public void GenerateOutputFileIsImplemented()
         {
-            calculator.ReadCalculationParameters();
-            calculator.RetrievePriceInfo();
-            calculator.CalculateCorrelation();
+            Calculator.ReadCalculationParameters(ParametersForTesting);
+            Calculator.RetrievePriceInfo();
+            Calculator.CalculateCorrelation();
 
-            Assert.DoesNotThrow(calculator.GenerateOutputFile);
+            Assert.DoesNotThrow(Calculator.GenerateOutputFile);
         }
 
         [Test]
         public void VerifyCorrelationCoefficients()
         {
-            calculator.ReadCalculationParameters();
-            calculator.RetrievePriceInfo();
-            calculator.CalculateCorrelation();
+            Calculator.ReadCalculationParameters(ParametersForTesting);
+            Calculator.RetrievePriceInfo();
+            Calculator.CalculateCorrelation();
 
-            var firstFund = calculator.Funds[0];
+            var firstFund = Calculator.Funds[0];
             Assert.NotNull(firstFund);
 
-            var secondFund = calculator.Funds[1];
+            var secondFund = Calculator.Funds[1];
             Assert.NotNull(secondFund);
 
             var firstFundCorrelationCoefficients = firstFund.CorrelationCoefficients;

@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ParameterToolboxTest\ParameterToolboxTest.csproj" />
     <ProjectReference Include="..\PriceCorrelationCalculator\PriceCorrelationCalculator.csproj" />
   </ItemGroup>
 

@@ -70,11 +70,8 @@ namespace PriceCorrelationCalculator
             foreach (string fundName in keysToRemove) FundTable.Remove(fundName);
         }
 
-        public void ReadCalculationParameters()
+        public void ReadCalculationParameters(Parameters calculationParameters)
         {
-            var parameters = ParametersFactory.CreateParameters();
-            var calculationParameters = parameters.Deserialize();
-
             Funds = calculationParameters.Funds;
             StartDate = calculationParameters.StartDate;
             EndDate = calculationParameters.EndDate;

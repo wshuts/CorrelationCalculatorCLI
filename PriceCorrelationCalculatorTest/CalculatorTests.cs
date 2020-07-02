@@ -1,3 +1,4 @@
+using Moq;
 using NUnit.Framework;
 using ParameterToolbox;
 using ParameterToolboxTest;
@@ -11,12 +12,22 @@ namespace PriceCorrelationCalculatorTest
         [SetUp]
         public void Setup()
         {
-            Calculator = new Calculator();
             ParametersForTesting = ParametersFactory.CreateParametersForTesting();
+
+            PriceServerFactoryMockSetup();
+            var priceServerFactoryMock = PriceServerFactoryMock.Object;
+
+            Calculator = new Calculator(priceServerFactoryMock);
+        }
+
+        private void PriceServerFactoryMockSetup()
+        {
+            PriceServerFactoryMock.Setup(s => s.CreatePriceServer()).Returns(new PriceServer());
         }
 
         public Calculator Calculator { get; private set; }
         public Parameters ParametersForTesting { get; private set; }
+        public Mock<IPriceServerFactory> PriceServerFactoryMock { get; } = new Mock<IPriceServerFactory>(MockBehavior.Strict);
 
         [Test]
         public void CalculateCorrelationIsImplemented()

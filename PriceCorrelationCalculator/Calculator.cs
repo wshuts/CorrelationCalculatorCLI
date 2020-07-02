@@ -11,11 +11,11 @@ namespace PriceCorrelationCalculator
         private const string RelativeFundTableFileName = @"FundTable\FundTable.json";
         private const string RelativeOutputFileName = @"Output\CorrelationCoefficients.xls";
 
-        public Calculator()
+        public Calculator(IPriceServerFactory priceServerFactory)
         {
             StreamFactory = new StreamFactory();
 
-            PriceServerFactory = new PriceServerFactory();
+            PriceServerFactory = priceServerFactory;
             PriceServer = PriceServerFactory.CreatePriceServer();
         }
 

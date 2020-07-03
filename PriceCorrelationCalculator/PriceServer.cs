@@ -50,10 +50,8 @@ namespace PriceCorrelationCalculator
             InitializeWebRequest(request);
             var response = GetWebResponse(request);
 
-            var dataStream = response.GetResponseStream();
-            var reader = new StreamReader(dataStream ??
-                                          throw new InvalidOperationException(
-                                              "Could not get response from the price server."));
+            var dataStream = GetResponseStream(response);
+            var reader = CreateStreamReader(dataStream);
             var responseFromServer = reader.ReadToEnd();
 
             reader.Close();
@@ -61,6 +59,20 @@ namespace PriceCorrelationCalculator
             response.Close();
 
             return responseFromServer;
+        }
+
+        private static StreamReader CreateStreamReader(Stream dataStream)
+        {
+            var reader = new StreamReader(dataStream ??
+                                          throw new InvalidOperationException(
+                                              "Could not get response from the price server."));
+            return reader;
+        }
+
+        private static Stream GetResponseStream(HttpWebResponse response)
+        {
+            var dataStream = response.GetResponseStream();
+            return dataStream;
         }
 
         private static HttpWebResponse GetWebResponse(WebRequest request)

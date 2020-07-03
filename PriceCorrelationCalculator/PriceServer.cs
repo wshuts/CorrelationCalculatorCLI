@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Security.Authentication;
+using ParameterToolbox;
 
 namespace PriceCorrelationCalculator
 {
     public class PriceServer
     {
         private const string AbsolutePath = "https://personal.vanguard.com/us/funds/tools/pricehistorysearch";
+        public IStreamFactory StreamFactory { get; } = new StreamFactory();
         public IDictionary<string, string> FundTable { get; set; } = new SortedList<string, string>();
         public IDictionary<string, string> PriceInfo { get; set; } = new SortedList<string, string>();
 
@@ -43,7 +45,7 @@ namespace PriceCorrelationCalculator
             }
         }
 
-        private static string ReadFromWeb(string requestUri)
+        private string ReadFromWeb(string requestUri)
         {
             SetSecurityProtocol();
 
@@ -52,18 +54,10 @@ namespace PriceCorrelationCalculator
             using var response = GetWebResponse(request);
 
             using var dataStream = GetResponseStream(response);
-            using var reader = CreateStreamReader(dataStream);
+            using var reader = StreamFactory.CreateStreamReader(dataStream);
             var responseFromServer = reader.ReadToEnd();
 
             return responseFromServer;
-        }
-
-        private static StreamReader CreateStreamReader(Stream dataStream)
-        {
-            var reader = new StreamReader(dataStream ??
-                                          throw new InvalidOperationException(
-                                              "Could not get response from the price server."));
-            return reader;
         }
 
         private static Stream GetResponseStream(HttpWebResponse response)

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ParameterToolbox
 {
@@ -12,6 +13,11 @@ namespace ParameterToolbox
         public StreamReader CreateStreamReader(string path)
         {
             return new StreamReader(path);
+        }
+
+        public StreamReader CreateStreamReader(Stream dataStream)
+        {
+            return new StreamReader(dataStream);
         }
     }
 }

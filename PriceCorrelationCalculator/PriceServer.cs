@@ -9,6 +9,7 @@ namespace PriceCorrelationCalculator
     {
         private const string AbsolutePath = "https://personal.vanguard.com/us/funds/tools/pricehistorysearch";
         public IStreamFactory StreamFactory { get; } = new StreamFactory();
+        public IWebCommunicator WebCommunicator { get; } = new WebCommunicator();
         public IDictionary<string, string> FundTable { get; set; } = new SortedList<string, string>();
         public IDictionary<string, string> PriceInfo { get; set; } = new SortedList<string, string>();
 

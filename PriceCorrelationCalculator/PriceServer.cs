@@ -43,7 +43,7 @@ namespace PriceCorrelationCalculator
             }
         }
 
-        private string ReadFromWeb(string requestUri)
+        public string ReadFromWeb(string requestUri)
         {
             WebCommunicator.SetSecurityProtocol();
 
@@ -58,7 +58,7 @@ namespace PriceCorrelationCalculator
             return responseFromServer;
         }
 
-        public static string BuildFundTableQuery()
+        public string BuildFundTableQuery()
         {
             const string sc = "?Sc=1";
             const string requestUri = AbsolutePath + sc;

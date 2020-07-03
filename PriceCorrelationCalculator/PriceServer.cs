@@ -44,14 +44,11 @@ namespace PriceCorrelationCalculator
 
         private static string ReadFromWeb(string requestUri)
         {
-            const SslProtocols sslProtocol = (SslProtocols) 0x00000C00;
-            const SecurityProtocolType securityProtocolType = (SecurityProtocolType) sslProtocol;
-            ServicePointManager.SecurityProtocol = securityProtocolType;
+            SetSecurityProtocol();
 
-            var request = WebRequest.Create(requestUri);
-            request.Credentials = CredentialCache.DefaultCredentials;
-            request.Timeout = 10000;
-            var response = (HttpWebResponse) request.GetResponse();
+            var request = CreateWebRequest(requestUri);
+            InitializeWebRequest(request);
+            var response = GetWebResponse(request);
 
             var dataStream = response.GetResponseStream();
             var reader = new StreamReader(dataStream ??
@@ -64,6 +61,31 @@ namespace PriceCorrelationCalculator
             response.Close();
 
             return responseFromServer;
+        }
+
+        private static HttpWebResponse GetWebResponse(WebRequest request)
+        {
+            var response = (HttpWebResponse) request.GetResponse();
+            return response;
+        }
+
+        private static void InitializeWebRequest(WebRequest request)
+        {
+            request.Credentials = CredentialCache.DefaultCredentials;
+            request.Timeout = 10000;
+        }
+
+        private static WebRequest CreateWebRequest(string requestUri)
+        {
+            var request = WebRequest.Create(requestUri);
+            return request;
+        }
+
+        private static void SetSecurityProtocol()
+        {
+            const SslProtocols sslProtocol = (SslProtocols) 0x00000C00;
+            const SecurityProtocolType securityProtocolType = (SecurityProtocolType) sslProtocol;
+            ServicePointManager.SecurityProtocol = securityProtocolType;
         }
 
         private static string BuildQuery()

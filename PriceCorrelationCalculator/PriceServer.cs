@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Security.Authentication;
 using ParameterToolbox;
 
 namespace PriceCorrelationCalculator
@@ -47,48 +44,17 @@ namespace PriceCorrelationCalculator
 
         private string ReadFromWeb(string requestUri)
         {
-            SetSecurityProtocol();
+            WebCommunicator.SetSecurityProtocol();
 
-            var request = CreateWebRequest(requestUri);
-            InitializeWebRequest(request);
-            using var response = GetWebResponse(request);
+            var request = WebCommunicator.CreateWebRequest(requestUri);
+            WebCommunicator.InitializeWebRequest(request);
+            using var response = WebCommunicator.GetWebResponse(request);
 
-            using var dataStream = GetResponseStream(response);
+            using var dataStream = WebCommunicator.GetResponseStream(response);
             using var reader = StreamFactory.CreateStreamReader(dataStream);
             var responseFromServer = reader.ReadToEnd();
 
             return responseFromServer;
-        }
-
-        private static Stream GetResponseStream(HttpWebResponse response)
-        {
-            var dataStream = response.GetResponseStream();
-            return dataStream;
-        }
-
-        private static HttpWebResponse GetWebResponse(WebRequest request)
-        {
-            var response = (HttpWebResponse) request.GetResponse();
-            return response;
-        }
-
-        private static void InitializeWebRequest(WebRequest request)
-        {
-            request.Credentials = CredentialCache.DefaultCredentials;
-            request.Timeout = 10000;
-        }
-
-        private static WebRequest CreateWebRequest(string requestUri)
-        {
-            var request = WebRequest.Create(requestUri);
-            return request;
-        }
-
-        private static void SetSecurityProtocol()
-        {
-            const SslProtocols sslProtocol = (SslProtocols) 0x00000C00;
-            const SecurityProtocolType securityProtocolType = (SecurityProtocolType) sslProtocol;
-            ServicePointManager.SecurityProtocol = securityProtocolType;
         }
 
         public static string BuildFundTableQuery()

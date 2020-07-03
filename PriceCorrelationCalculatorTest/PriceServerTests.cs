@@ -51,6 +51,29 @@ namespace PriceCorrelationCalculatorTest
         }
 
         [Test]
+        public void CanParseFundTable()
+        {
+            const string responseFromServer =
+                "Junk\n" +
+                "</option>\n" +
+                "</option>\n" +
+                "</option>\n" +
+                "</option>\n" +
+                "</option>\n" +
+                "<option value=\"0540\" >500 Index Fund Adm       </option>\n" +
+                "<option value=\"0502\" >Balanced Index Fund Adm  </option>\n" +
+                "<option value=\"5100\" >CA IT Tax-Exempt Admiral </option>\n" +
+                "Junk";
+
+            PriceServer.ParseFundTable(responseFromServer);
+
+            const string expectedFirstValue = "0540";
+            var fundTable = PriceServer.FundTable;
+            var firstValue = fundTable["500 Index Fund Adm       "];
+            Assert.AreEqual(expectedFirstValue, firstValue);
+        }
+
+        [Test]
         public void CanReadFromWeb()
         {
             const string requestUri = ExpectedFundTableQuery;

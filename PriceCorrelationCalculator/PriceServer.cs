@@ -20,7 +20,7 @@ namespace PriceCorrelationCalculator
             ParseFundTable(responseFromServer);
         }
 
-        private void ParseFundTable(string responseFromServer)
+        public void ParseFundTable(string responseFromServer)
         {
             IList fundTableLines = new ArrayList();
 

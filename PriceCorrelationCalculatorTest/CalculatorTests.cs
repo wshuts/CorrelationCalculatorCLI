@@ -27,7 +27,9 @@ namespace PriceCorrelationCalculatorTest
 
         public Calculator Calculator { get; private set; }
         public Parameters ParametersForTesting { get; private set; }
-        public Mock<IPriceServerFactory> PriceServerFactoryMock { get; } = new Mock<IPriceServerFactory>(MockBehavior.Strict);
+
+        public Mock<IPriceServerFactory> PriceServerFactoryMock { get; } =
+            new Mock<IPriceServerFactory>(MockBehavior.Strict);
 
         [Test]
         public void CalculateCorrelationIsImplemented()

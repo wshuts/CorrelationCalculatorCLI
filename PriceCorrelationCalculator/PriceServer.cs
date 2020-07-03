@@ -9,12 +9,13 @@ namespace PriceCorrelationCalculator
 {
     public class PriceServer
     {
+        private const string AbsolutePath = "https://personal.vanguard.com/us/funds/tools/pricehistorysearch";
         public IDictionary<string, string> FundTable { get; set; } = new SortedList<string, string>();
         public IDictionary<string, string> PriceInfo { get; set; } = new SortedList<string, string>();
 
         public void GetFundTable()
         {
-            var requestUri = BuildQuery();
+            var requestUri = BuildFundTableQuery();
             var responseFromServer = ReadFromWeb(requestUri);
             ParseFundTable(responseFromServer);
         }
@@ -48,15 +49,11 @@ namespace PriceCorrelationCalculator
 
             var request = CreateWebRequest(requestUri);
             InitializeWebRequest(request);
-            var response = GetWebResponse(request);
+            using var response = GetWebResponse(request);
 
-            var dataStream = GetResponseStream(response);
-            var reader = CreateStreamReader(dataStream);
+            using var dataStream = GetResponseStream(response);
+            using var reader = CreateStreamReader(dataStream);
             var responseFromServer = reader.ReadToEnd();
-
-            reader.Close();
-            dataStream.Close();
-            response.Close();
 
             return responseFromServer;
         }
@@ -100,29 +97,28 @@ namespace PriceCorrelationCalculator
             ServicePointManager.SecurityProtocol = securityProtocolType;
         }
 
-        private static string BuildQuery()
+        public static string BuildFundTableQuery()
         {
-            const string absolutePath = "https://personal.vanguard.com/us/funds/tools/pricehistorysearch";
             const string sc = "?Sc=1";
-            const string requestUri = absolutePath + sc;
+            const string requestUri = AbsolutePath + sc;
             return requestUri;
         }
 
         public string BuildQuery(string id, DateTime startDate, DateTime endDate)
         {
-            const string absolutePath = "https://personal.vanguard.com/us/funds/tools/pricehistorysearch";
             const string radio = "?radio=1";
             const string results = "&results=get";
             const string fundType = "&FundType=VanguardFunds";
             const string fundIntExt = "&FundIntExt=INT";
-            var fundId = "&FundId=" + id;
+            const string radiobutton2 = "&radiobutton2=1";
             const string sc = "&Sc=1";
+
+            var fundId = "&FundId=" + id;
             var fundName = "&fundName=" + id;
             var fundValue = "&fundValue=" + id;
-            const string radiobutton2 = "&radiobutton2=1";
             var beginDate = "&beginDate=" + startDate.Month + "%2F" + startDate.Day + "%2F" + startDate.Year;
             var finalDate = "&endDate=" + endDate.Month + "%2F" + endDate.Day + "%2F" + endDate.Year;
-            var requestUri = absolutePath + radio + results + fundType + fundIntExt + fundId + sc + fundName +
+            var requestUri = AbsolutePath + radio + results + fundType + fundIntExt + fundId + sc + fundName +
                              fundValue + radiobutton2 + beginDate + finalDate;
             return requestUri;
         }

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Text;
 using Moq;
@@ -42,12 +43,27 @@ namespace PriceCorrelationCalculatorTest
         private const string ExpectedFundTableQuery =
             "https://personal.vanguard.com/us/funds/tools/pricehistorysearch?Sc=1";
 
+        private const string ExpectedPriceInfoQuery =
+            "https://personal.vanguard.com/us/funds/tools/pricehistorysearch?radio=1&results=get&FundType=VanguardFunds" +
+            "&FundIntExt=INT&FundId=0540&Sc=1&fundName=0540&fundValue=0540&radiobutton2=1&beginDate=4%2F1%2F2020&endDate=6%2F30%2F2020";
+
         [Test]
         public void CanBuildFundTableQuery()
         {
             var fundTableQuery = PriceServer.BuildFundTableQuery();
 
             Assert.AreEqual(ExpectedFundTableQuery, fundTableQuery);
+        }
+
+        [Test]
+        public void CanBuildPriceInfoQuery()
+        {
+            const string id = "0540";
+            var startDate = new DateTime(2020, 04, 01);
+            var endDate = new DateTime(2020, 06, 30);
+            var priceInfoQuery = PriceServer.BuildPriceInfoQuery(id, startDate, endDate);
+
+            Assert.AreEqual(ExpectedPriceInfoQuery, priceInfoQuery);
         }
 
         [Test]

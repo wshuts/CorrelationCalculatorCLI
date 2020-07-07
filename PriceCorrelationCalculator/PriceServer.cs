@@ -63,7 +63,7 @@ namespace PriceCorrelationCalculator
             return requestUri;
         }
 
-        public string BuildQuery(string id, DateTime startDate, DateTime endDate)
+        public string BuildPriceInfoQuery(string id, DateTime startDate, DateTime endDate)
         {
             const string radio = "?radio=1";
             const string results = "&results=get";
@@ -84,7 +84,7 @@ namespace PriceCorrelationCalculator
 
         public void RetrievePriceInfo(string fundNumber, in DateTime startDate, in DateTime endDate)
         {
-            var requestUri = BuildQuery(fundNumber, startDate, endDate);
+            var requestUri = BuildPriceInfoQuery(fundNumber, startDate, endDate);
             var responseFromServer = ReadFromWeb(requestUri);
             ParsePriceInfo(responseFromServer);
         }

@@ -90,6 +90,26 @@ namespace PriceCorrelationCalculatorTest
         }
 
         [Test]
+        public void CanParsePriceInfo()
+        {
+            const string responseFromServer =
+                "Junk\n" +
+                "<tr class=\"ar\"><td align=\"left\">05/15/2020</td><td>$26.66</td><td class=\"nr\">&#8212;</td></tr>\n" +
+                "<tr class=\"wr\"><td align=\"left\">05/18/2020</td><td>$27.55</td><td class=\"nr\">&#8212;</td></tr>\n" +
+                "<tr class=\"wr\"><td align=\"left\">06/12/2020</td><td>$281.94</td><td class=\"nr\">1.84%</td></tr>\n" +
+                "<tr class=\"ar\"><td align=\"left\">06/15/2020</td><td>$284.30</td><td class=\"nr\">1.84%</td></tr>\n" +
+                "Junk";
+            ;
+
+            PriceServer.ParsePriceInfo(responseFromServer);
+
+            const string expectedFirstValue = "281.94";
+            var priceInfo = PriceServer.PriceInfo;
+            var firstValue = priceInfo["06/12/2020"];
+            Assert.AreEqual(expectedFirstValue, firstValue);
+        }
+
+        [Test]
         public void CanReadFromWeb()
         {
             const string requestUri = ExpectedFundTableQuery;

@@ -99,7 +99,6 @@ namespace PriceCorrelationCalculatorTest
                 "<tr class=\"wr\"><td align=\"left\">06/12/2020</td><td>$281.94</td><td class=\"nr\">1.84%</td></tr>\n" +
                 "<tr class=\"ar\"><td align=\"left\">06/15/2020</td><td>$284.30</td><td class=\"nr\">1.84%</td></tr>\n" +
                 "Junk";
-            ;
 
             PriceServer.ParsePriceInfo(responseFromServer);
 

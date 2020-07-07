@@ -1,0 +1,1272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html lang="en-US">
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<script type="text/javascript">
+	var cbd = cbd || {};
+	cbd.pagePerformance = {};
+	cbd.pagePerformance.headStart = new Date().getTime();
+	cbd.isSuppressQuirksMode = false;
+	var _cbdNonRiaPageReady = false;
+</script>
+
+<style type="text/css"> 
+   .hidePageIfJSdisabled{ display: none; } 
+</style> 
+
+<script type="text/javascript"> 
+	// Delete rule hiding page for IE
+	if (document.styleSheets[0].rules)
+	{ 
+		   document.styleSheets[0].removeRule(0);
+	}
+	// ...for Firefox/Safari/Opera
+	else if (document.styleSheets[0].cssRules)
+	{ 
+		   document.styleSheets[0].deleteRule(0);        
+	}			
+</script>
+<script type="text/javascript">
+var plsVersionQueryStr = '?20200409|145517',
+	_cbdImagePath = 'https://static.vgcontent.info/ret/hnw/web/images/',
+	_cbdFlashPath = '/web/flash/',
+	_cbdContentDomain = 'https://static.vgcontent.info/ret/hnw',
+	_cbdCommonPath = '/web/cbd/common/',
+	_cbdYuiFilterExt = '-min',
+	_cbdYuiComboBase = 'https://static.vgcontent.info/web/common/c?',
+	_cbdYuiComboBaseBackup = 'https://static-origin.vgcontent.info/web/common/c?',
+	_cbdYuiRoot = '/web/common/yui/3.4.0/build/',
+	_cbdForceDomain = null,
+    _cbdUseLocalWindow = null;
+	
+</script>
+<base href="https://personal.vanguard.com"/><!-- cell id is: E1_01 -->
+<script type="text/javascript">
+var cbd = cbd || {};
+cbd._cbdContextRoot = '/us/' //cbd._cbdContextRoot is used in TeaLeaf.js
+window._cbdContextRoot = cbd._cbdContextRoot;
+
+cbd.url = cbd.url || {};
+cbd.url._cbdWebContextRoot = '/web';
+window._cbdWebContextRoot = cbd.url._cbdWebContextRoot;
+
+cbd.page = cbd.page || {};
+cbd.page._plsVersionQueryStr = plsVersionQueryStr;
+cbd.page._cbdImagePath = _cbdImagePath;
+cbd.page._cbdFlashPath = _cbdFlashPath;
+cbd.page._cbdContentDomain = _cbdContentDomain;
+cbd.page._cbdCommonPath = _cbdCommonPath;
+cbd.page._cbdYuiFilterExt = _cbdYuiFilterExt;
+cbd.page._cbdYuiComboBase = _cbdYuiComboBase;
+cbd.page._cbdYuiComboBaseBackup = _cbdYuiComboBaseBackup;
+cbd.page._cbdYuiRoot = _cbdYuiRoot;
+cbd.page._cbdForceDomain = _cbdForceDomain;
+cbd.page._cbdUseLocalWindow = _cbdUseLocalWindow;
+cbd.page._viewContext = 'faces';
+
+var APP_CONTEXT_ROOT = {};
+var CONTEXT_ROOT_SECURE = 'CONTEXT_ROOT_SECURE';
+APP_CONTEXT_ROOT[CONTEXT_ROOT_SECURE] = '/us/';
+var CONTEXT_ROOT_PUBLIC = 'CONTEXT_ROOT_PUBLIC';
+APP_CONTEXT_ROOT[CONTEXT_ROOT_PUBLIC] = '/us/';
+var CONTEXT_ROOT_TRANS = 'CONTEXT_ROOT_TRANS';
+APP_CONTEXT_ROOT[CONTEXT_ROOT_TRANS] = '/us/investnow/';
+
+
+function jsCBDgetContextRoot(app)
+{	
+	var GS_APP_CONTEXT_ROOT = APP_CONTEXT_ROOT[app];
+	
+	if(GS_APP_CONTEXT_ROOT != null)
+	{
+		return GS_APP_CONTEXT_ROOT;
+	}
+	
+	return _cbdContextRoot;
+}
+</script>
+
+<!--[if lte IE 9]>
+		
+			<script>
+				(function() {
+					if(!/*@cc_on!@*/0) return; // Conditional compilation feature of IE
+					var elementTags = "abbr,article,aside,audio,bb,canvas,datagrid,datalist,details,dialog,eventsource,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,time,video".split(','),
+					    elementTagsLength = elementTags.length,
+					    i;
+					for(i=0;i<elementTagsLength;i++) { 
+						document.createElement(elementTags[i]);
+					}
+				})();
+			</script>
+	<![endif]-->
+
+<script type="text/javascript" src="https://static.vgcontent.info/ret/hnw/web/vendorlibs/tealeaf/TeaLeaf.js?20200409|145517"></script>
+<link rel="stylesheet" href="https://static.vgcontent.info/ret/hnw/web/stylesheet/VGI-nrg.css?20200409|145517"/>
+		<link rel="stylesheet" href="https://static.vgcontent.info/ret/hnw/web/stylesheet/RIA-nrg.css?20200409|145517" type="text/css" />
+<link rel="stylesheet" href="https://static.vgcontent.info/ret/hnw/web/stylesheet/VGI-common-nrg-fw-ca.css?20200409|145517" type="text/css" />
+        <link rel="stylesheet" href="https://static.vgcontent.info/ret/hnw/web/cbd/common/globalheader/ghBase.css?20200409|145517" type="text/css" />
+<meta name="viewport" content="initial-scale=1.0,width=device-width"/>
+		<script type="text/javascript">
+var _cbdHistory = false;
+
+var isNearGen = true;
+cbd.page.isResponsiveCapable = cbd.page.isResponsive = false;
+</script>
+
+<script id="yuiBaseModules" type="text/javascript" src="https://static.vgcontent.info/web/common/c?/web/common/yui/3.4.0/build/yui/yui-min.js&amp;/web/common/yui/3.4.0/build/oop/oop-min.js&amp;/web/common/yui/3.4.0/build/features/features-min.js&amp;/web/common/yui/3.4.0/build/dom-core/dom-core-min.js&amp;/web/common/yui/3.4.0/build/event-custom-base/event-custom-base-min.js&amp;/web/common/yui/3.4.0/build/dom-base/dom-base-min.js&amp;/web/common/yui/3.4.0/build/selector-native/selector-native-min.js&amp;/web/common/yui/3.4.0/build/selector/selector-min.js&amp;/web/common/yui/3.4.0/build/node-core/node-core-min.js&amp;/web/common/yui/3.4.0/build/node-base/node-base-min.js&amp;/web/common/yui/3.4.0/build/event-base/event-base-min.js&amp;/web/common/yui/3.4.0/build/event-delegate/event-delegate-min.js&amp;/web/common/yui/3.4.0/build/node-event-delegate/node-event-delegate-min.js&amp;/web/common/yui/3.4.0/build/pluginhost-base/pluginhost-base-min.js&amp;/web/common/yui/3.4.0/build/pluginhost-config/pluginhost-config-min.js&amp;/web/common/yui/3.4.0/build/node-pluginhost/node-pluginhost-min.js&amp;/web/common/yui/3.4.0/build/dom-style/dom-style-min.js&amp;/web/common/yui/3.4.0/build/dom-screen/dom-screen-min.js&amp;/web/common/yui/3.4.0/build/node-screen/node-screen-min.js&amp;/web/common/yui/3.4.0/build/node-style/node-style-min.js&amp;/web/common/yui/3.4.0/build/classnamemanager/classnamemanager-min.js&amp;/web/common/yui/3.4.0/build/event-custom-complex/event-custom-complex-min.js&amp;/web/common/yui/3.4.0/build/attribute-base/attribute-base-min.js&amp;/web/common/yui/3.4.0/build/base-base/base-base-min.js&amp;/web/common/yui/3.4.0/build/plugin/plugin-min.js&amp;/web/common/yui/3.4.0/build/event-synthetic/event-synthetic-min.js&amp;/web/common/yui/3.4.0/build/event-focus/event-focus-min.js&amp;/web/common/yui/3.4.0/build/event-touch/event-touch-min.js&amp;/web/common/yui/3.4.0/build/json-parse/json-parse-min.js&amp;/web/common/yui/3.4.0/build/json-stringify/json-stringify-min.js"></script>
+
+<script type="text/javascript" src="/web/cbd/common/rollup/cbdcommon.js?20200409|145517"></script>
+<script type="text/javascript" src="https://static.vgcontent.info/ret/hnw/web/javascript/vg2.js?20200409|145517"></script>
+<script type="text/javascript" src="https://static.vgcontent.info/ret/hnw/web/javascript/vg.js?20200409|145517"></script>
+
+<script type="text/javascript">
+js_cbdServer = '';
+var _cbdContentDomain = 'https://static.vgcontent.info/ret/hnw';
+jsCBDinitGlobals();
+</script>
+
+<meta name="DCSext.poid" content=""/>
+<meta name="WT.seg_1" content=""/>
+<meta name="WT.seg_2" content=""/>
+<meta name="WT.seg_3" content=""/>
+<meta name="WT.seg_4" content=""/>
+<meta name="WT.seg_5" content=""/>
+<meta name="WT.seg_6" content=""/>
+<meta name="WT.z_lv1" content=""/>
+<meta name="WT.ServiceAgreement" content=""/>
+<meta name="WT.SalesAssociate" content=""/>
+<meta name="WT.SalesExecutive" content=""/>
+<meta name="WT.UserExperience" content=""/>
+<meta name="WT.BusinessFocus" content=""/>
+<meta name="DCSext.PartStatus" content=""/>
+<meta name="WT.rememberMe" content=""/>
+<meta name="DCSext.PartWebRegStatus" content=""/>
+<meta name="DCSext.hybridDeviceType" content=""/>
+<meta name="WT.busMktSegment" content=""/>
+<meta name="WT.companyTier" content=""/>
+<meta name="WT.contactTier" content=""/>
+<meta name="WT.selfId" content=""/>
+<meta name="WT.matchedContactRowId" content=""/>
+<script type="text/javascript">
+	var gDomain = 'watag.vanguard.com';
+	var gDcsId  = 'dcsp306jac2byeyp3cifb566v_6x5h';
+	var wtActive = false;
+</script>
+<script type="text/javascript">
+if (ie6)
+{
+	try
+	{ 
+		//prevents disruption of progress animation in IE6.
+        document.execCommand("BackgroundImageCache", false, true);
+	} 
+	catch (e) {} 
+}
+</script>
+
+<SCRIPT type="text/VBScript">
+<!--
+Function checkAdobeIE()
+	On error resume next
+        checkAdobeIE = false
+	checkAdobeIE =  checkControl( "PDF.PdfCtrl.1") Or checkControl( "PDF.PdfCtrl.5") Or checkControl( "PDF.PdfCtrl.6") Or checkControl( "AcroExch.Document") Or checkControl( "AcroPDF.PDF.1")
+End Function
+
+Function checkFlashIE()
+        On error resume next
+	checkFlashIE = false
+	For flashVersion = 9 to 10
+		If checkControl( "ShockwaveFlash.ShockwaveFlash." & flashVersion ) Then
+			checkFlashIE = true
+		End If
+	Next
+End Function
+
+Function checkControl(Byval progId )
+	On error resume next
+        checkControl = false
+	checkControl = IsObject( CreateObject( progId ) )
+End Function
+-->
+</SCRIPT>
+<script type="text/javascript">
+jsCBDsetDomain();
+</script>	
+<script type="text/javascript">
+<!--
+function jsCBDgetUrlPrefix()
+{
+	return 'https://personal.vanguard.com';
+}
+cbdcommon.url.prefix = jsCBDgetUrlPrefix();
+
+function jsCBDadobeWarning()
+{
+}
+//-->
+</script>
+
+<link rel="stylesheet" href="https://eus.vanguard.com/global-components/2.0.8/css/vgcHeaderFooterDesktopOnly.min.css" type="text/css" />   
+<link rel="stylesheet" href="https://static.vgcontent.info/ret/hnw/web/stylesheet/2.css?20200409|145517" type="text/css">
+<!--DCR Name: \Funds\Tools\data\FundsToolsPriceHistSearchJSP -->
+
+
+<TITLE>Vanguard - Price History Search</TITLE>
+<META name="DCSext.pageid" content="FundsToolsPriceHistSearchJSP">
+<META name="KEYWORDS" content="price search, price history search, historical prices">
+<META name="DESCRIPTION" content="Track the daily prices of 1 or 2 Vanguard® funds or annuity and 529 portfolios for up to 12 months."><script type="text/javascript">
+
+function _cbdOnLoad()
+{
+	//	Delaying the call to fix a race condition with the modem value not being set correctly.
+	setTimeout( _cbdCheckConnectionSpeed, 1000 );
+	
+	_cbdNonRiaPageReady = true;
+	
+	// fixed width near Gen changes
+    _cbdAdjustFixedWidthModalPop();
+    
+	window.location = window.location.href + "#res";;
+		
+	cbdInitChatPosX = null;
+cbdInitChatPosY = null;
+cbdInitChatWidth = null;
+cbdInitChatHeight = null;
+
+	
+	cbd.pagePerformance.pageResponsive = new Date().getTime();
+	
+	vg.comp.initFloodlightFrame();
+	
+	vg.comp.initWebAnalytics();
+}
+</script>
+<SCRIPT type="text/javascript">
+function jsCBDonEnter()
+{
+	var keyPressed = 0;
+	if ( window.event )
+	{
+		//IE
+		keyPressed = window.event.keyCode;
+		jsCBDonEnter.eventNode = jsCBDgetEventNode(window.event);
+	}
+	else if ( arguments[0] )
+	{
+		// In Netscape event is passed as an argument.
+		keyPressed = arguments[0].which;
+		jsCBDonEnter.eventNode = jsCBDgetEventNode(arguments[0]);
+	}
+
+	if ( keyPressed == 13 )
+	{
+		if(_cbdIsGlobalHeaderLink(jsCBDonEnter.eventNode)) 
+		{
+			return true;
+		}
+	
+		getHistory();;
+		return false;
+	}
+}
+document.onkeypress=jsCBDonEnter;
+</SCRIPT>
+<script type="application/json" id="cccVMSConfig">[{"text":"<strong>Important: Update your browser!</strong><br>Don't lose your online connection with us. To continue accessing our website and your accounts online, you'll need to update your current web browser to a newer version. Older browsers can have security risks, so we'll be ending support for your browser soon.  <a style='color:#e37222' class='vmsHelpLink' href='https://investor.vanguard.com/customer-service/password-user-name-browser?cmpgn=EM:RIG:ED:browser:CREATIV1:Email:0518:0101:MEC:OSC:0323' target='_blank'>Learn more about browser updates</a>","for":"BROWSER","enabled":true},{"text":"Our website is scheduled to be unavailable during the weekend of November 3, 2018.  Thank you for your patience.","for":"LOGGED_IN_USER","enabled":false}]</script><script type="application/json" id="cbdcommon-webAnalytics">{}</script><script type="application/json" id="cccAdobeConfig">{"adobeConfig":{"version":"2.7.2","siteIdentifier":"retail","platform":"web","country":"us","language":"en","reportSuiteIds":["vanguard<siteDescriptor><environment>"],"dfaEnabled":true,"dfaMaxDelay":"750","dfaSPOTID":"844392","aamEnabled":true,"aamCustomerID":"spoid_id","aamCustomerIDContextKey":"sPOID","aamContainerNSID":2,"environment":"prod"}}</script><script type="application/json" id="cccAppDynamics">{"xd":{"enable":false},"spa":{"spa2":true},"appKey":"AD-AAB-AAM-NCN","adrumExtUrl":"https://static-c1a.vgcontent.info/web/cf/ccc-libs/vg-app-dynamics/1.2.1/js"}</script><script type='text/javascript' src='https://static-c1a.vgcontent.info/web/cf/ccc-libs/vg-message-svc/2.0.0/js/vms.min.js' async></script><script type='text/javascript' src='https://static-c1a.vgcontent.info/web/cf/ccc-libs/vg-adobe-analytics/2.7.2/AllAppMeasurement.min.js'></script><script type='text/javascript' src='https://static-c1a.vgcontent.info/web/cf/ccc-libs/vg-app-dynamics/1.2.1/js/app_dynamics.min.js'></script></head>
+
+<body bgcolor="#FFFFFF" id="body"
+
+class=""
+onFocus="jsCBDdoModalCB()"
+onClick="jsCBDdoModalCB(); jsCBDcloseFlyouts(event);"
+onMouseUp="jsCBDdoModalCB();jsCBDcloseAutoSuggest(event);"
+onMouseDown="jsCBDdoModalCB();"
+onScroll="jsCBDdoModalCB();"
+onUnload='jsCBDunloadCB()'
+onLoad='_cbdOnLoad()'
+>
+<noscript>
+<table width="100%" cellpadding="5" style="font: 75% Verdana; color: #903; margin-bottom: 10px; background-color: #F9EAAF;">
+  <tr>
+    <td width="15px"><img src="https://static.vgcontent.info/ret/hnw/web/images/icons/ind_error.gif" align="absmiddle" width="15" height="15"/></td>
+    <td><b>Warning: Vanguard.com will not work properly with <a href="https://www.vanguard.com/web/corpcontent/scatJavaScriptError.html"> JavaScript disabled!</a></b></td>
+  </tr>
+</table>
+</noscript>
+<!-- cbd-info: template = VDPMetaTemplate -->
+<div id="vg0" class="vg0 hidePageIfJSdisabled" onclick="javascript:void(0)">
+<div style="height:0px;width:0px;visibility:hidden">
+<input type="hidden" id="CBD_STATE_CHANGED" value="0" />
+</div>
+
+<!--CBD: GlobalHeaderTag-->
+<div id='vgc-globalHeader' data-current-site='P' data-vgc-data-endpoint='https://eus.vanguard.com/site-taxonomy/?alpha&rel=personal' data-logged-on='false' data-vgc-alt-banner="false" data-showWelcomeMessage='false' data-vgc-primary-silo='CBD_NAV_PLANNING_AND_ADVICE' data-vgc-secondary-silo='CBD_NAV_RETIREMENT'><div class='vgc-navBar'><div class='vgc-navBarContainer'><div class='vgc-logo'><a href='#{Config.investorSite}/home' alt='Vanguard' title='Home'><span class='vgc-backupText'>Vanguard home</span></a></div></div></div><noscript><div class='vgc-noJSWarning'><div><h2>Warning</h2><p>This page won't work properly unless JavaScript is enabled.</p></div></div></noscript></div><!--End CBD--><div id="main">
+
+<div id="bcrumbs"><!--CBD: HistoryNavTag-->
+<nav role='navigation' aria-label='breadcrumb'><ul class='historyNavBreadcrumbs'><li><a href="https://investor.vanguard.com/investing/advice-guidance" id="_cbdExt0">Advice & guidance</a>
+&nbsp;&raquo;&nbsp;
+</li><li><a href="/us/funds/tools" id="_cbdExt1">Research funds</a>
+&nbsp;&raquo;&nbsp;
+</li><li><span tabindex='0' aria-label class='noLink'>Price history search</span>
+</li></ul></nav><!--End CBD--></div>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr>
+<td>
+<div class="pageHead">
+<div class="pageHeadContent"><!--PPE:PAGE_HEADER-->
+<h1>Price history search</h1>
+<!--End PPE--></div>
+</div>
+</td>
+<td align="right">
+</td>
+</tr>
+</table>
+<!-- table with colL, colM and colR --> 
+<table id="columnContainer" width="100%" cellpadding="0" cellspacing="0">
+<tr>
+
+<td valign="top" id="colM">
+<div id="colMcontent">
+
+<SCRIPT LANGUAGE="javascript" src="/web/javascript/FormCheck.js"></SCRIPT>
+
+<script language='javascript'>
+var okSubmit = true;
+function enterFundNumber(){
+      var fnum = document.FormNavigate.fundName.value;
+      if(true){
+         document.forms['FormNavigate'].fundValue.value = fnum;
+      }
+      document.forms['FormNavigate'].FundId.value=fnum;
+}
+
+function checkFundValue(){
+
+    if(true){
+
+        var fid = document.FormNavigate.fundValue.value;
+        if(fid.length>0){
+            if( !isNumeric(fid,'fndid','id9')){
+                okSubmit = false;
+            }else if(isNumeric(fid,'fndid','id9')){
+                document.forms['FormNavigate'].FundId.value= fid;
+                okSubmit=true;
+            }
+        }else{
+            var fnum = document.FormNavigate.fundName.value;
+            if(jsCBDisEmpty(fnum, 'fndnm', 'id9')){
+                document.FormNavigate.fundName.focus();
+                okSubmit = false;
+            }else{
+                document.forms['FormNavigate'].FundId.value=fnum;
+                okSubmit=true;
+            }
+        }
+    }else{
+            var fnum = document.FormNavigate.fundName.value;
+            if(jsCBDisEmpty(fnum, 'fndnm', 'id9')){
+                document.FormNavigate.fundName.focus();
+                okSubmit = false;
+            }else{
+                document.forms['FormNavigate'].FundId.value=fnum;
+                 okSubmit = true;
+            }
+    }
+}
+
+function clearErrorMessages(){
+
+    for(i = 1; i < 12; i++){
+       var msgID = "id"+i;
+       jsCBDsetErrMessage(msgID, false);
+    }
+    jsCBDsetErrLabel('bgndt', false);
+    jsCBDsetErrLabel('enddt', false);
+    jsCBDsetErrLabel('yr', false);
+    if(true){
+    	jsCBDsetErrLabel('fndnm',false);
+    }
+    if(true){
+        jsCBDsetErrLabel('fndid',false);
+    }
+    if(true){
+          for(i = 12; i < 15; i++){
+            var msgID = "id"+i;
+            jsCBDsetErrMessage(msgID, false);
+        }
+    }
+}
+
+function getHistory(){
+
+    clearErrorMessages();
+    if(true){
+    	checkFundValue();
+    } else {
+        okSubmit = true;
+    }
+
+    if(document.forms['FormNavigate'].radio.value=='1'){
+
+        if (jsCBDisEmpty(document.forms['FormNavigate'].beginDate.value, 'bgndt', 'id1')){
+            document.forms['FormNavigate'].beginDate.focus();
+            okSubmit = false;
+        }
+
+        if (!isDatePriceHistory(document.forms['FormNavigate'].beginDate.value)){
+            jsCBDdisplayError('bgndt', 'id1', true);
+            document.forms['FormNavigate'].beginDate.focus();
+            okSubmit = false;
+        }
+
+
+        if (jsCBDisEmpty(document.forms['FormNavigate'].endDate.value, 'enddt', 'id4')){
+            document.forms['FormNavigate'].endDate.focus();
+            okSubmit = false;
+        }
+        if (!isDatePriceHistory(document.forms['FormNavigate'].endDate.value)){
+            jsCBDdisplayError('enddt', 'id4', true);
+            document.forms['FormNavigate'].endDate.focus();
+            okSubmit = false;
+
+        }
+
+        if(isDatePriceHistory(document.forms['FormNavigate'].beginDate.value) && isDatePriceHistory(document.forms['FormNavigate'].endDate.value)){
+
+            var startDate = getDate(document.forms['FormNavigate'].beginDate.value);
+            var endDate = getDate(document.forms['FormNavigate'].endDate.value);
+
+             if (startDate > endDate) {
+               jsCBDdisplayError('bgndt', 'id3', true);
+               okSubmit = false;
+             }
+         }
+
+    }else if(document.forms['FormNavigate'].radio.value =='2'){
+
+        if (jsCBDisEmpty(document.forms['FormNavigate'].year.value, 'yr', 'id2')|| !isNumeric(document.forms['FormNavigate'].year.value, 'yr', 'id2') || !validateSize(document.forms['FormNavigate'].year.value,4, 'yr', 'id2')){
+            document.forms['FormNavigate'].year.focus();
+            okSubmit = false;
+        }
+
+        var date = new Date();
+        var year =  document.forms['FormNavigate'].year.value;
+
+        if(year>date.getFullYear()){
+            jsCBDdisplayError('yr', 'id5', true);
+
+            document.forms['FormNavigate'].year.focus();
+
+            okSubmit = false;
+        }
+
+    }else if(document.forms['FormNavigate'].radio.value == '3'){
+    }
+
+    if(okSubmit==true){
+        document.forms['FormNavigate'].results.value = 'get';
+
+       document.forms['FormNavigate'].submit();
+    }
+
+}
+
+function setTimePeriod(value){
+       document.forms['FormNavigate'].radio.value = value;
+}
+
+function getDate(dateString) {
+
+      var day, month, year;
+      var delimiter = "";
+      var index = 0;
+      if ((index = dateString.indexOf("/")) >= 1) { delimiter = "/";
+      } else if ((index = dateString.indexOf("-")) >= 1) { delimiter = "-";
+      }
+      if (delimiter != "") {
+         month = dateString.substring(0, index);
+         day = dateString.substring(index + 1, index = dateString.indexOf(delimiter, index+1));
+         year = dateString.substring(index+1);
+      } else {
+                month = dateString.substring(0, 2);
+                day = dateString.substring(2, 4);
+                year = dateString.substring(4);
+      }
+      return new Date(year, month-1, day);
+}
+
+function isDatePriceHistory(dateString){
+    var day, month, year;
+      var delimiter = "";
+      var index = 0;
+      var length = dateString.length;
+      if(length>10||length<8){
+          return false;
+
+      }
+      if ((index = dateString.indexOf("/")) >= 1) { delimiter = "/";
+      }else{
+          return false;
+      }
+
+       month = dateString.substring(0, index);
+       day = dateString.substring(index + 1, index = dateString.indexOf(delimiter, index+1));
+       year = dateString.substring(index+1);
+       var c=new Date(year,month-1,day);
+       if(year.length!=4||c.getMonth()!=month-1||c.getDate()!=day||c.getFullYear()!=year){
+            return false
+       }
+       return true;
+
+}
+
+function submitShare(){
+    document.forms['FormNavigate'].FundId.value= "";
+    document.forms['FormNavigate'].submit();
+}
+</script>
+
+
+<form name="FormNavigate" action="/us/funds/tools/pricehistorysearch" method="get">
+<input TYPE="hidden" NAME="radio" VALUE="1">
+<input TYPE="hidden" NAME="results" VALUE="1">
+<input TYPE="hidden" NAME="FundType" value="VanguardFunds">
+<INPUT TYPE="hidden" NAME="FundIntExt" VALUE="INT">
+<input TYPE="hidden" NAME="FundId" value="0540">
+
+        <!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id1" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id1-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-1-->
+<p>Enter a start date&#160;using numbers in the following&#160;format: mm/dd/yyyy.</p>
+
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id2" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id2-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-10-->
+<p>Enter a year, using numbers in the following format: yyyy.</p>
+
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id3" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id3-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-3-->
+<p>Enter a start date&#160;that's prior to the end date.</p>
+
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id4" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id4-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-2-->
+<p>Enter an end date using numbers in&#160;the following&#160;format: mm/dd/yyyy.</p>
+
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id5" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id5-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-14-->
+<p class="attention">We can only display information through the current calendar year. Please enter another year.</p>
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id6" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id6-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-5-->
+<p>The end date is before the fund inception date. We have no data to display.</p>
+
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id7" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id7-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-11-->
+<p>The markets were closed on the date selected. We have no data to display.</p>
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id8" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id8-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-7-->
+<p>The start date is after the last business day. We have no data to display.</p>
+
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id9" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id9-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-9-->
+<p>The fund number doesn't match any Vanguard&#174; fund. Enter another number.</p>
+
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id10" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id10-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-8-->
+<p>We have no data to display for the search criteria you entered.</p>
+
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id11" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id11-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-13-->
+<p>You entered a time period of more than 12 months. We'll display 12 months of history&#160;from&#160;the start date.</p>
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: HtmlTableTag-->
+<table border="0" width="100%" cellpadding="4" cellspacing="0">
+<tr>
+<td  >
+
+       <!--CBD: HtmlTableTag-->
+<table border="0" width="100%" cellpadding="4" cellspacing="0">
+<tr>
+<td colspan="3"  >
+			<!--PPE:Content-1-->
+<p>Track the daily prices of 1 or 2 Vanguard&#160;investments for up to 12 months. You can also view high and low prices for a specific calendar year or since&#160;an investment's inception.</p>
+<!--End PPE--></td>
+</tr>
+
+              
+<tr>
+<td colspan="3"  >&nbsp;
+            </td>
+</tr>
+
+
+             
+<tr>
+<td colspan="3"  > 
+              <!--CBD: FundsSearchPriceHistoryMenuTag-->
+<div class="pagemenu">
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr valign="top">
+<td class="first" width="25%">
+<ul><li class="selected"><a href="javascript:void(0);" id="_cbdExt3">Vanguard funds</a></li>
+
+</ul></td>
+<td width="25%">
+<ul><li><a href="/us/funds/tools/pricehistorysearch?FundId=null&FundType=VVAP" id="_cbdExt4">Annuities</a></li>
+
+</ul></td>
+<td width="25%">
+<ul><li><a href="/us/funds/tools/pricehistorysearch?FundId=null&FundType=529Plans" id="_cbdExt5">529 plans</a></li>
+
+</ul></td>
+<td>
+<ul><li><a href="/us/funds/tools/pricehistorysearch?FundId=null&FundType=ExchangeTradedShares" id="_cbdExt6">Exchange-traded funds</a></li>
+
+</ul></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+</td>
+</tr>
+
+
+        </table>
+<!--End CBD-->
+</td>
+</tr>
+
+
+
+        
+<tr>
+<td  >
+
+
+			<!--CBD: FundsTitleBarTag-->
+<div class="input1">
+<table border="0" width="100%" cellpadding="3" cellspacing="0">
+<tr class="hedbar-tan">
+<td  ><b>Step 1. Select a Vanguard&#174;&#160;fund</b></td>
+</tr>
+<tr><td align="left">&nbsp</td></tr>
+</table>
+</div>
+<!--End CBD-->
+</td>
+</tr>
+
+
+       
+<tr>
+<td  >
+
+       <!--CBD: HtmlTableTag-->
+<table border="0" width="100%" cellpadding="3" cellspacing="0">
+<tr>
+<td nowrap ><p><b>Share class&nbsp;&nbsp; </P></B>  </td>
+<td align="left"  >
+                <!--CBD: FundsPriceHistShareClassPullDownTag-->
+<select id="_cbdExt7" onchange="javascript:submitShare()" name="Sc" size="1">
+<option value="0" >Investor Shares</option>
+<option value="1"  selected="selected">Admiral Shares</option>
+<option value="2" >Institutional Shares</option>
+<option value="99" >All</option>
+</select>
+<!--End CBD-->
+</td>
+<td width="70%" colspan="2" align="left"  >
+                    <!--PPE:Content-6-->
+<p><a href="/us/content/Funds/FundsVGFundsShareClassDefJSP.jsp">What are share classes?</a></p>
+<!--End PPE--></td>
+</tr>
+
+               
+<tr>
+<td colspan="2"  >
+                 <!--CBD: ErrorLabelTag-->
+<span id="fndnm"><b><!--CBD: PullDownTag-->
+<select id="_cbdExt8" onchange="javascript:enterFundNumber()" name="fundName" size="1">
+<option value="" >Select one</option>
+<option value="0540"  selected="selected">500 Index Fund Adm       </option>
+<option value="0502" >Balanced Index Fund Adm  </option>
+<option value="5100" >CA IT Tax-Exempt Admiral </option>
+<option value="0575" >CA LT Tax-Exempt Admiral </option>
+<option value="5111" >Capital Opportunity Adm  </option>
+<option value="0517" >Commodity Strategy Adm   </option>
+<option value="5488" >Comm Services Idx Admiral</option>
+<option value="5483" >Consumer Discret Idx Adm </option>
+<option value="5484" >Consumer Staples Idx Adm </option>
+<option value="1520" >Core Bond Fund Admiral   </option>
+<option value="0127" >Devel Markets Idx Admiral</option>
+<option value="5702" >Dividend Apprec Idx Adm  </option>
+<option value="1531" >Emerging Markets Bond Adm</option>
+<option value="0520" >Em Mkt Gov Bond Ix Adm   </option>
+<option value="5533" >Emerging Mkts Stk Idx Adm</option>
+<option value="0551" >Energy Fund Admiral      </option>
+<option value="5480" >Energy Index Fund Admiral</option>
+<option value="0565" >Equity Income Fund Adm   </option>
+<option value="0579" >European Stock Index Adm </option>
+<option value="5024" >Explorer Fund Admiral    </option>
+<option value="0598" >Extended Mkt Index Adm   </option>
+<option value="5486" >Financials Index Fund Adm</option>
+<option value="0570" >FTSE All World ex-US Adm </option>
+<option value="2284" >FTSE AW xUS Sm-Cp Idx Adm</option>
+<option value="0513" >FTSE Social Index Adm    </option>
+<option value="0525" >Global Cred Bond Admiral </option>
+<option value="0547" >Global ESG Select Stk Adm</option>
+<option value="1758" >Gbl ex-US Real Est Ix Adm</option>
+<option value="0594" >Global Min Vol Admiral   </option>
+<option value="1896" >Global Wellesley Inc Adm </option>
+<option value="1767" >Global Wellington Admiral</option>
+<option value="0536" >GNMA Fund Admiral Shares </option>
+<option value="0593" >Growth and Income Adm    </option>
+<option value="0509" >Growth Index Fund Adm    </option>
+<option value="0552" >Health Care Fund Adm     </option>
+<option value="5485" >Health Care Index Admiral</option>
+<option value="5023" >High Dividend Yld Idx Adm</option>
+<option value="0529" >High-Yield Corp Fund Adm </option>
+<option value="5044" >High-Yield Tax-Exempt Adm</option>
+<option value="5482" >Industrials Index Admiral</option>
+<option value="5119" >Inflation-Protect Sec Adm</option>
+<option value="5487" >Information Tech Idx Adm </option>
+<option value="5314" >Inter-Term Bond Index Adm</option>
+<option value="1946" >Inter-Term Corp Bnd Ix Ad</option>
+<option value="0571" >Inter-Term Invest-Gr Adm </option>
+<option value="0542" >Inter-Term Tax-Exempt Adm</option>
+<option value="0535" >Inter-Term Treasury Adm  </option>
+<option value="1943" >IT Treasury Index Admiral</option>
+<option value="0534" >Intl Core Stock Admiral  </option>
+<option value="0515" >Intl Div App Idx Admiral </option>
+<option value="0581" >International Growth Adm </option>
+<option value="0530" >Intl High Div Yld Ix Adm </option>
+<option value="5307" >Large-Cap Index Fund Adm </option>
+<option value="0531" >Ltd-Term Tax-Exempt Adm  </option>
+<option value="2022" >Long-Term Bond Index Adm </option>
+<option value="1947" >Long-Term Corp Bond Ix Ad</option>
+<option value="0568" >Long-Term Invest-Gr Adm  </option>
+<option value="0543" >Long-Term Tax-Exempt Adm </option>
+<option value="0583" >Long-Term Treasury Adm   </option>
+<option value="1944" >LT Treasury Index Admiral</option>
+<option value="5481" >Materials Index Fund Adm </option>
+<option value="5832" >Mid-Cap Gr Idx Admiral   </option>
+<option value="5859" >Mid-Cap Index Fund Adm   </option>
+<option value="5835" >Mid-Cap Val Idx Admiral  </option>
+<option value="1948" >Mortgage-Backed Sec Ix Ad</option>
+<option value="0514" >NJ LT Tax-Exempt Admiral </option>
+<option value="0576" >NY LT Tax-Exempt Admiral </option>
+<option value="0572" >Pacific Stock Index Adm  </option>
+<option value="0577" >PA LT Tax-Exempt Admiral </option>
+<option value="0066" >Prime Money Market Adm   </option>
+<option value="0559" >PRIMECAP Fund Admiral    </option>
+<option value="5123" >Real Estate Index Admiral</option>
+<option value="5132" >Short-Term Bond Index Adm</option>
+<option value="1945" >Short-Term Corp Bnd Ix Ad</option>
+<option value="0549" >Short-Term Federal Adm   </option>
+<option value="0567" >STerm Inf Pro Sec Idx Adm</option>
+<option value="0539" >Short-Term Invest-Gr Adm </option>
+<option value="0541" >Short-Term Tax-Exempt Adm</option>
+<option value="0532" >Short-Term Treasury Adm  </option>
+<option value="1942" >ST Treasury Index Admiral</option>
+<option value="5861" >Small-Cap Gr Idx Admiral </option>
+<option value="0548" >Small-Cap Index Fund Adm </option>
+<option value="5860" >Small-Cap Val Idx Admiral</option>
+<option value="0591" >Tax-Exempt Bond Index Adm</option>
+<option value="0103" >Tax-Managed Balanced Adm </option>
+<option value="5102" >Tax-Managd Cap Apprec Adm</option>
+<option value="0116" >Tax-Managed Small-Cap Adm</option>
+<option value="0584" >Total Bond Mkt Index Adm </option>
+<option value="0511" >Tot Intl Bond Ix Admiral </option>
+<option value="0569" >Tot Intl Stock Ix Admiral</option>
+<option value="0585" >Total Stock Mkt Idx Adm  </option>
+<option value="5028" >Total World Stock Idx Adm</option>
+<option value="0523" >U.S. Growth Fund Admiral </option>
+<option value="0516" >US Multifactor Adm       </option>
+<option value="0592" >UltraShortTerm Bond Adm  </option>
+<option value="5489" >Utilities Index Fund Adm </option>
+<option value="0506" >Value Index Fund Adm     </option>
+<option value="0527" >Wellesley Income Fund Adm</option>
+<option value="0521" >Wellington Fund Admiral  </option>
+<option value="5022" >Windsor Fund Admiral     </option>
+<option value="0573" >Windsor II Fund Adm      </option>
+</select>
+<!--End CBD-->
+</b></span>
+<!--End CBD-->
+</td>
+<td align="left" nowrap ><b><P><B><!--CBD: ErrorLabelTag-->
+<span id="fndid"><b>or enter a fund number</b></span>
+<!--End CBD-->
+</P></B></b></td>
+<td width="70%" align="left"  >
+                    <!--CBD: InputTag-->
+<input type="text" name="fundValue" value="0540" size="8"   id="_cbdExt9" />
+<!--End CBD-->
+</td>
+</tr>
+
+            
+<tr>
+<td colspan="3"  >&nbsp;
+            </td>
+</tr>
+
+          </table>
+<!--End CBD-->
+</td>
+</tr>
+
+
+       
+<tr>
+<td  >
+
+       <!--CBD: FundsTitleBarTag-->
+<div class="input1">
+<table border="0" width="100%" cellpadding="3" cellspacing="0">
+<tr class="hedbar-tan">
+<td  ><b>Step 2. Enter a time period</b></td>
+</tr>
+<tr><td align="left">&nbsp</td></tr>
+</table>
+</div>
+<!--End CBD-->
+</td>
+</tr>
+
+
+<tr>
+<td  >
+
+        <!--CBD: HtmlTableTag-->
+<table border="0" width="100%" cellpadding="4" cellspacing="0">
+<tr>
+<td valign="top"  > <input type="radio" name="radiobutton2" value="1" checked onClick="javascript:setTimePeriod('1');">  </td>
+<td width="96%" colspan="3" align="left" valign="top"  >
+            <!--PPE:Content-8-->
+<p><b>Daily price history</b><br />
+View price history for a period&#8212;ranging from 1 day to 1&#160;year&#8212;that falls between the&#160;investment's inception date and the last business day. Yield history is available from 1993 to the present.</p>
+<!--End PPE--></td>
+</tr>
+
+        
+<tr>
+<td  >&nbsp;</td>
+<td nowrap ><P><B><!--CBD: ErrorLabelTag-->
+<span id="bgndt"><b>From</b></span>
+<!--End CBD-->
+</P></B></td>
+<td  ><p>(mm/dd/yyyy)</P></td>
+<td width="75%" align="left"  ><input type="text" name="beginDate" size="10" value="4/1/2020" maxlength="10"></td>
+</tr>
+
+        
+<tr>
+<td  >&nbsp;</td>
+<td nowrap ><P><B> <!--CBD: ErrorLabelTag-->
+<span id="enddt"><b>To</b></span>
+<!--End CBD-->
+</P></B> </td>
+<td  ><p>(mm/dd/yyyy)</P></td>
+<td width="75%"  ><input type="text" name="endDate" size="10" value="6/30/2020" MAXLENGTH="10"></td>
+</tr>
+
+
+        
+<tr>
+<td valign="top"  ><input type="radio" name="radiobutton2" value="2" onClick="javascript:setTimePeriod('2');">  </td>
+<td width="95%" colspan="3"  ><!--PPE:Content-9-->
+<p><b>High and low prices for a calendar year</b><br />
+View the investment high and low prices for any&#160;full calendar year.</p>
+<!--End PPE--></td>
+</tr>
+
+         
+<tr>
+<td  >&nbsp;</td>
+<td nowrap ><P><B><!--CBD: ErrorLabelTag-->
+<span id="yr"><b>Year</b></span>
+<!--End CBD-->
+</P></B></td>
+<td  ><p> (yyyy)</P></td>
+<td width="75%"  ><input type="text" name="year" size="4" value="" MAXLENGTH="4"></td>
+</tr>
+
+
+        
+<tr>
+<td valign="top"  ><input type="radio" name="radiobutton2" value="3" onClick="javascript:setTimePeriod('3');"></td>
+<td colspan="3"  > <!--PPE:Content-10-->
+<p><b>High and low prices since inception</b><br />
+View the investment high and low prices since its&#160;inception.</p>
+<!--End PPE--></td>
+</tr>
+
+
+        
+<tr>
+<td colspan="4"  >
+
+
+       <!--CBD: HtmlButtonsTag-->
+<table width="100%" border="0" cellspacing="3" cellpadding="0" class="bgroup" role="presentation">
+<tr><td align="left">
+<input type="button" class="button" altClass="button-disabled" title="Get price results" onclick="javascript:getHistory()"  value="Get History" id="_cbdExt10" disableOnSubmit="false" />&nbsp;
+</td>
+</tr>
+</table>
+
+<!--End CBD-->
+</td>
+</tr>
+
+    </table>
+<!--End CBD-->
+</td>
+</tr>
+
+
+    </table>
+<!--End CBD-->
+<A name="res"></A>
+   <!--CBD: FundsTitleBarTag-->
+<div class="input1">
+<table border="0" width="100%" cellpadding="3" cellspacing="0">
+<tr class="hedbar-tan">
+<td  ><b>Results</b></td>
+</tr>
+<tr><td align="left">&nbsp</td></tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id11" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id11-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-13-->
+<p>You entered a time period of more than 12 months. We'll display 12 months of history&#160;from&#160;the start date.</p>
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id12" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id12-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-4-->
+<p>The start date is prior to the fund inception date. Data will&#160;begin&#160;at the fund inception date.</p>
+
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id13" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id13-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-6-->
+<p>The end date is in the future. We'll display data to the current date.</p>
+
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<!--CBD: ErrorMsgTag-->
+<div class="errorMsg " id="id14" style="display:none">
+<table border="0" cellpadding="2" cellspacing="2" role="presentation">
+<tr>
+<td valign="top" id="id14-img-td" class="nr"></td>
+<td valign="top" align="left" class="attention nr"><!--PPE:Error_messages-12-->
+<p>We display the year-to-date price history for the current year.</p>
+<!--End PPE--></td>
+</tr>
+</table>
+</div>
+<!--End CBD-->
+<P><!--CBD: HtmlTableTag-->
+<table border="0" width="100%" cellpadding="3" cellspacing="0">
+<tr>
+<td valign="TOP"  >
+    <!--CBD: HtmlTableTag-->
+<table border="0" cellpadding="3" cellspacing="0">
+<tr>
+<td  ><b><!--PPE:Content-12-->
+<p><b>Current results</b></p>
+<!--End PPE--></b></td>
+</tr>
+
+
+    
+<tr>
+<td  ><a href="/us/funds/snapshot?FundId=0540&FundIntExt=INT">500 Index Fund Adm</a></td>
+</tr>
+
+    
+<tr>
+<td  >4/1/2020-6/30/2020</td>
+</tr>
+
+    
+<tr>
+<td  >&nbsp;
+            </td>
+</tr>
+
+
+    
+<tr>
+<td  >Fund Inception Date 11/13/2000</td>
+</tr>
+
+     
+<tr>
+<td  >&nbsp;
+            </td>
+</tr>
+
+
+     
+<tr>
+<td  >  <!--CBD: Table-->
+<table border="0" width="100%" class="dataTable pad " cellpadding="0" cellspacing="0"><tbody class="right">
+<tr><th class="left">High</th><th>High Date</th><th>Low</th><th class="nr">Low Date</th></tr>
+<tr class="wr"><td>$299.51</td><td align="left">06/08/2020</td><td>$228.03</td><td class="nr" align="left">04/01/2020</td></tr>
+</tbody>
+</table>
+<!--End CBD-->
+</td>
+</tr>
+
+
+    
+<tr>
+<td  >&nbsp;</td>
+</tr>
+
+    
+<tr>
+<td  >  <!--CBD: Table-->
+<table border="0" width="100%" class="dataTable pad " cellpadding="0" cellspacing="0"><tbody class="right">
+<tr><th class="left">Date</th><th>Price</th><th class="nr">Yield <a href="#" onClick="javascript:jsCBDopenStdWin('/us/FundsYieldFootnote?FundId=0540&FundIntExt=INT',CBD_MODAL_POP,1,1,POPUP_SIZE2);return false">B</a></th></tr>
+<tr class="wr"><td align="left">04/01/2020</td><td>$228.03</td><td class="nr">2.02%</td></tr>
+<tr class="ar"><td align="left">04/02/2020</td><td>$233.28</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">04/03/2020</td><td>$229.78</td><td class="nr">2.26%</td></tr>
+<tr class="ar"><td align="left">04/06/2020</td><td>$245.93</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">04/07/2020</td><td>$245.54</td><td class="nr">2.26%</td></tr>
+<tr class="ar"><td align="left">04/08/2020</td><td>$253.97</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">04/09/2020</td><td>$257.68</td><td class="nr">2.26%</td></tr>
+<tr class="ar"><td align="left">04/13/2020</td><td>$255.09</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">04/14/2020</td><td>$262.92</td><td class="nr">2.26%</td></tr>
+<tr class="ar"><td align="left">04/15/2020</td><td>$257.14</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">04/16/2020</td><td>$258.63</td><td class="nr">2.26%</td></tr>
+<tr class="ar"><td align="left">04/17/2020</td><td>$265.58</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">04/20/2020</td><td>$260.82</td><td class="nr">2.26%</td></tr>
+<tr class="ar"><td align="left">04/21/2020</td><td>$252.83</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">04/22/2020</td><td>$258.64</td><td class="nr">2.26%</td></tr>
+<tr class="ar"><td align="left">04/23/2020</td><td>$258.51</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">04/24/2020</td><td>$262.12</td><td class="nr">2.26%</td></tr>
+<tr class="ar"><td align="left">04/27/2020</td><td>$265.98</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">04/28/2020</td><td>$264.60</td><td class="nr">2.26%</td></tr>
+<tr class="ar"><td align="left">04/29/2020</td><td>$271.64</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">04/30/2020</td><td>$269.14</td><td class="nr">2.26%</td></tr>
+<tr class="ar"><td align="left">05/01/2020</td><td>$261.62</td><td class="nr">2.26%</td></tr>
+<tr class="wr"><td align="left">05/04/2020</td><td>$262.73</td><td class="nr">2.21%</td></tr>
+<tr class="ar"><td align="left">05/05/2020</td><td>$265.10</td><td class="nr">2.21%</td></tr>
+<tr class="wr"><td align="left">05/06/2020</td><td>$263.27</td><td class="nr">2.21%</td></tr>
+<tr class="ar"><td align="left">05/07/2020</td><td>$266.40</td><td class="nr">2.21%</td></tr>
+<tr class="wr"><td align="left">05/08/2020</td><td>$270.95</td><td class="nr">2.21%</td></tr>
+<tr class="ar"><td align="left">05/11/2020</td><td>$270.99</td><td class="nr">2.21%</td></tr>
+<tr class="wr"><td align="left">05/12/2020</td><td>$265.46</td><td class="nr">2.21%</td></tr>
+<tr class="ar"><td align="left">05/13/2020</td><td>$260.85</td><td class="nr">2.21%</td></tr>
+<tr class="wr"><td align="left">05/14/2020</td><td>$263.92</td><td class="nr">2.21%</td></tr>
+<tr class="ar"><td align="left">05/15/2020</td><td>$264.98</td><td class="nr">2.21%</td></tr>
+<tr class="wr"><td align="left">05/18/2020</td><td>$273.36</td><td class="nr">2.21%</td></tr>
+<tr class="ar"><td align="left">05/19/2020</td><td>$270.52</td><td class="nr">2.21%</td></tr>
+<tr class="wr"><td align="left">05/20/2020</td><td>$275.07</td><td class="nr">2.21%</td></tr>
+<tr class="ar"><td align="left">05/21/2020</td><td>$272.95</td><td class="nr">2.21%</td></tr>
+<tr class="wr"><td align="left">05/22/2020</td><td>$273.64</td><td class="nr">2.21%</td></tr>
+<tr class="ar"><td align="left">05/26/2020</td><td>$277.01</td><td class="nr">2.21%</td></tr>
+<tr class="wr"><td align="left">05/27/2020</td><td>$281.12</td><td class="nr">2.21%</td></tr>
+<tr class="ar"><td align="left">05/28/2020</td><td>$280.57</td><td class="nr">2.21%</td></tr>
+<tr class="wr"><td align="left">05/29/2020</td><td>$281.96</td><td class="nr">2.21%</td></tr>
+<tr class="ar"><td align="left">06/01/2020</td><td>$283.03</td><td class="nr">2.21%</td></tr>
+<tr class="wr"><td align="left">06/02/2020</td><td>$285.36</td><td class="nr">1.84%</td></tr>
+<tr class="ar"><td align="left">06/03/2020</td><td>$289.29</td><td class="nr">1.84%</td></tr>
+<tr class="wr"><td align="left">06/04/2020</td><td>$288.38</td><td class="nr">1.84%</td></tr>
+<tr class="ar"><td align="left">06/05/2020</td><td>$295.94</td><td class="nr">1.84%</td></tr>
+<tr class="wr"><td align="left">06/08/2020</td><td>$299.51</td><td class="nr">1.84%</td></tr>
+<tr class="ar"><td align="left">06/09/2020</td><td>$297.19</td><td class="nr">1.84%</td></tr>
+<tr class="wr"><td align="left">06/10/2020</td><td>$295.61</td><td class="nr">1.84%</td></tr>
+<tr class="ar"><td align="left">06/11/2020</td><td>$278.22</td><td class="nr">1.84%</td></tr>
+<tr class="wr"><td align="left">06/12/2020</td><td>$281.94</td><td class="nr">1.84%</td></tr>
+<tr class="ar"><td align="left">06/15/2020</td><td>$284.30</td><td class="nr">1.84%</td></tr>
+<tr class="wr"><td align="left">06/16/2020</td><td>$289.69</td><td class="nr">1.84%</td></tr>
+<tr class="ar"><td align="left">06/17/2020</td><td>$288.65</td><td class="nr">1.84%</td></tr>
+<tr class="wr"><td align="left">06/18/2020</td><td>$288.82</td><td class="nr">1.84%</td></tr>
+<tr class="ar"><td align="left">06/19/2020</td><td>$287.24</td><td class="nr">1.84%</td></tr>
+<tr class="wr"><td align="left">06/22/2020</td><td>$289.12</td><td class="nr">1.84%</td></tr>
+<tr class="ar"><td align="left">06/23/2020</td><td>$290.36</td><td class="nr">1.84%</td></tr>
+<tr class="wr"><td align="left">06/24/2020</td><td>$282.86</td><td class="nr">1.84%</td></tr>
+<tr class="ar"><td align="left">06/25/2020</td><td>$285.97</td><td class="nr">1.84%</td></tr>
+<tr class="wr"><td align="left">06/26/2020</td><td>$277.62</td><td class="nr">1.84%</td></tr>
+<tr class="ar"><td align="left">06/29/2020</td><td>$281.73</td><td class="nr">1.84%</td></tr>
+<tr class="wr"><td align="left">06/30/2020</td><td>$286.09</td><td class="nr">1.84%</td></tr>
+</tbody>
+</table>
+<!--End CBD-->
+</td>
+</tr>
+
+
+
+    </table>
+<!--End CBD-->
+</td>
+</tr>
+
+
+    </table>
+<!--End CBD-->
+</P>
+    </FORM></div>		 <!-- end colMContent -->
+</td>
+
+<td valign="top" id="colR">
+    <div id="colRcontent"><!--CBD: IWantToTag-->
+<div class="iwantto"><H3>I want to...</H3><!--PPE:Right_nav-1-->
+<p><a href="/us/funds/tools/pricehistorycharts">View price history as a chart</a></p>
+<p><a href="/us/faces/JSP/Funds/Compare/CompareEntryContent.jsp?type=fund">Compare mutual funds and ETFs</a></p>
+<p><a href="/us/funds/tools/costcompare">Compare fund costs</a></p>
+<!--End PPE--></div><!--End CBD--></div>
+        </td>
+</tr>
+
+</table>
+
+<div id="content2">
+</div>
+
+</div> <!-- end main -->
+
+<!--CBD: GlobalFooterTag-->
+<div id='vgc-globalFooter' data-vgc-data-ref='#vgc-globalHeader' data-vgc-build='E1_01' data-vgc-footer-type='' data-vgc-custom-text=''></div><script type="text/javascript" src="https://eus.vanguard.com/global-components/2.0.8/js/vgcHeaderFooter.min.js"></script><script type="text/javascript" src="https://eus.vanguard.com/global-components/2.0.8/js/vgcHeaderFooterInit.min.js"></script><!--End CBD-->
+<script type="text/javascript">
+jsCBDrestoreAllSelectionLists();
+</script>
+</div>
+
+<script type="text/javascript">
+cbd.pagePerformance.pageRendered = new Date().getTime();
+cbd.pagePerformance.serverTime = 23;</script>
+
+<span>
+<script type="text/javascript">
+vg.comp._floodFrameSrc = "https://fls.doubleclick.net/activityi;src=844392;type=remar743;cat=resea140;u7=funds0051;u1=prd;ord=1594152000359?";
+</script> 
+<div id="floodDiv"></div>
+</span></body>
+</html>

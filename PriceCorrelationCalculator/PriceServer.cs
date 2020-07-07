@@ -89,7 +89,7 @@ namespace PriceCorrelationCalculator
             ParsePriceInfo(responseFromServer);
         }
 
-        private void ParsePriceInfo(string responseFromServer)
+        public void ParsePriceInfo(string responseFromServer)
         {
             IList priceLines = new ArrayList();
 

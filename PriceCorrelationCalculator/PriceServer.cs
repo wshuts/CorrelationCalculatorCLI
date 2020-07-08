@@ -8,6 +8,7 @@ namespace PriceCorrelationCalculator
     public class PriceServer
     {
         private const string AbsolutePath = "https://personal.vanguard.com/us/funds/tools/pricehistorysearch";
+        public string PriceInfoQuery { get; private set; }
         public string ResponseFromServer { get; private set; }
         public string FundTableQuery { get; private set; }
         public IStreamFactory StreamFactory { get; } = new StreamFactory();
@@ -65,7 +66,7 @@ namespace PriceCorrelationCalculator
             return requestUri;
         }
 
-        public string BuildPriceInfoQuery(string id, DateTime startDate, DateTime endDate)
+        private static string BuildPriceInfoQuery(string id, DateTime startDate, DateTime endDate)
         {
             const string radio = "?radio=1";
             const string results = "&results=get";
@@ -86,12 +87,12 @@ namespace PriceCorrelationCalculator
 
         public void RetrievePriceInfo(string fundNumber, in DateTime startDate, in DateTime endDate)
         {
-            var requestUri = BuildPriceInfoQuery(fundNumber, startDate, endDate);
-            var responseFromServer = ReadFromWeb(requestUri);
-            ParsePriceInfo(responseFromServer);
+            PriceInfoQuery = BuildPriceInfoQuery(fundNumber, startDate, endDate);
+            ResponseFromServer = ReadFromWeb(PriceInfoQuery);
+            ParsePriceInfo(ResponseFromServer);
         }
 
-        public void ParsePriceInfo(string responseFromServer)
+        private void ParsePriceInfo(string responseFromServer)
         {
             IList priceLines = new ArrayList();
 

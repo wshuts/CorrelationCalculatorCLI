@@ -8,6 +8,8 @@ namespace PriceCorrelationCalculator
     public class PriceServer
     {
         private const string AbsolutePath = "https://personal.vanguard.com/us/funds/tools/pricehistorysearch";
+        public string ResponseFromServer { get; private set; }
+        public string FundTableQuery { get; private set; }
         public IStreamFactory StreamFactory { get; } = new StreamFactory();
         public IWebCommunicator WebCommunicator { get; set; } = new WebCommunicator();
         public IDictionary<string, string> FundTable { get; } = new SortedList<string, string>();
@@ -15,12 +17,12 @@ namespace PriceCorrelationCalculator
 
         public void GetFundTable()
         {
-            var requestUri = BuildFundTableQuery();
-            var responseFromServer = ReadFromWeb(requestUri);
-            ParseFundTable(responseFromServer);
+            FundTableQuery = BuildFundTableQuery();
+            ResponseFromServer = ReadFromWeb(FundTableQuery);
+            ParseFundTable(ResponseFromServer);
         }
 
-        public void ParseFundTable(string responseFromServer)
+        private void ParseFundTable(string responseFromServer)
         {
             IList fundTableLines = new ArrayList();
 
@@ -43,7 +45,7 @@ namespace PriceCorrelationCalculator
             }
         }
 
-        public string ReadFromWeb(string requestUri)
+        private string ReadFromWeb(string requestUri)
         {
             WebCommunicator.SetSecurityProtocol();
             var request = WebCommunicator.CreateWebRequest(requestUri);
@@ -56,7 +58,7 @@ namespace PriceCorrelationCalculator
             return responseFromServer;
         }
 
-        public string BuildFundTableQuery()
+        private static string BuildFundTableQuery()
         {
             const string sc = "?Sc=1";
             const string requestUri = AbsolutePath + sc;

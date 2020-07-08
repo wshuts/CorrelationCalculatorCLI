@@ -15,18 +15,17 @@ namespace PriceCorrelationCalculatorTest
         public void Setup()
         {
             PriceServer = new PriceServer {WebCommunicator = WebCommunicatorMock.Object};
-            WebCommunicatorMockSetup();
         }
 
-        private readonly WebRequest webRequest = It.IsAny<WebRequest>();
-        private readonly HttpWebResponse httpWebResponse = It.IsAny<HttpWebResponse>();
-
-        private readonly Stream stream = new MemoryStream(Encoding.UTF8.GetBytes("Foo"));
+        private WebRequest webRequest;
+        private HttpWebResponse httpWebResponse;
+        private string requestUri;
+        private Stream stream;
 
         private void WebCommunicatorMockSetup()
         {
             WebCommunicatorMock.Setup(s => s.SetSecurityProtocol());
-            WebCommunicatorMock.Setup(s => s.CreateWebRequest(It.IsAny<string>()))
+            WebCommunicatorMock.Setup(s => s.CreateWebRequest(requestUri))
                 .Returns(webRequest);
             WebCommunicatorMock.Setup(s => s.InitializeWebRequest(webRequest));
             WebCommunicatorMock.Setup(s => s.GetWebResponse(webRequest))
@@ -47,12 +46,47 @@ namespace PriceCorrelationCalculatorTest
             "https://personal.vanguard.com/us/funds/tools/pricehistorysearch?radio=1&results=get&FundType=VanguardFunds" +
             "&FundIntExt=INT&FundId=0540&Sc=1&fundName=0540&fundValue=0540&radiobutton2=1&beginDate=4%2F1%2F2020&endDate=6%2F30%2F2020";
 
-        [Test]
-        public void CanBuildFundTableQuery()
+        private const string ExpectedResponseFromServer = "Junk\n" +
+                                                          "</option>\n" +
+                                                          "</option>\n" +
+                                                          "</option>\n" +
+                                                          "</option>\n" +
+                                                          "</option>\n" +
+                                                          "<option value=\"0540\" >500 Index Fund Adm       </option>\n" +
+                                                          "<option value=\"0502\" >Balanced Index Fund Adm  </option>\n" +
+                                                          "<option value=\"5100\" >CA IT Tax-Exempt Admiral </option>\n" +
+                                                          "Junk";
+
+        private void CanBuildFundTableQuery()
         {
-            var fundTableQuery = PriceServer.BuildFundTableQuery();
+            var fundTableQuery = PriceServer.FundTableQuery;
 
             Assert.AreEqual(ExpectedFundTableQuery, fundTableQuery);
+        }
+
+        private void CanReadFromWeb()
+        {
+            WebCommunicatorMockVerify();
+
+            var responseFromServer = PriceServer.ResponseFromServer;
+            Assert.AreEqual(ExpectedResponseFromServer, responseFromServer);
+        }
+
+        private void WebCommunicatorMockVerify()
+        {
+            WebCommunicatorMock.Verify(v => v.SetSecurityProtocol(), Times.Once);
+            WebCommunicatorMock.Verify(v => v.CreateWebRequest(requestUri), Times.Once);
+            WebCommunicatorMock.Verify(v => v.InitializeWebRequest(webRequest), Times.Once);
+            WebCommunicatorMock.Verify(v => v.GetWebResponse(webRequest), Times.Once);
+            WebCommunicatorMock.Verify(v => v.GetResponseStream(httpWebResponse), Times.Once);
+        }
+
+        private void CanParseFundTable()
+        {
+            const string expectedFirstValue = "0540";
+            var fundTable = PriceServer.FundTable;
+            var firstValue = fundTable["500 Index Fund Adm       "];
+            Assert.AreEqual(expectedFirstValue, firstValue);
         }
 
         [Test]
@@ -67,26 +101,21 @@ namespace PriceCorrelationCalculatorTest
         }
 
         [Test]
-        public void CanParseFundTable()
+        public void CanGetFundTable()
         {
-            const string responseFromServer =
-                "Junk\n" +
-                "</option>\n" +
-                "</option>\n" +
-                "</option>\n" +
-                "</option>\n" +
-                "</option>\n" +
-                "<option value=\"0540\" >500 Index Fund Adm       </option>\n" +
-                "<option value=\"0502\" >Balanced Index Fund Adm  </option>\n" +
-                "<option value=\"5100\" >CA IT Tax-Exempt Admiral </option>\n" +
-                "Junk";
+            webRequest = It.IsAny<WebRequest>();
+            httpWebResponse = It.IsAny<HttpWebResponse>();
+            requestUri = ExpectedFundTableQuery;
+            var utf8 = Encoding.UTF8;
+            var buffer = utf8.GetBytes(ExpectedResponseFromServer);
+            stream = new MemoryStream(buffer);
+            WebCommunicatorMockSetup();
 
-            PriceServer.ParseFundTable(responseFromServer);
+            PriceServer.GetFundTable();
 
-            const string expectedFirstValue = "0540";
-            var fundTable = PriceServer.FundTable;
-            var firstValue = fundTable["500 Index Fund Adm       "];
-            Assert.AreEqual(expectedFirstValue, firstValue);
+            CanBuildFundTableQuery();
+            CanReadFromWeb();
+            CanParseFundTable();
         }
 
         [Test]
@@ -106,22 +135,6 @@ namespace PriceCorrelationCalculatorTest
             var priceInfo = PriceServer.PriceInfo;
             var firstValue = priceInfo["06/12/2020"];
             Assert.AreEqual(expectedFirstValue, firstValue);
-        }
-
-        [Test]
-        public void CanReadFromWeb()
-        {
-            const string requestUri = ExpectedFundTableQuery;
-            var responseFromServer = PriceServer.ReadFromWeb(requestUri);
-
-            WebCommunicatorMock.Verify(v => v.SetSecurityProtocol(), Times.Once);
-            WebCommunicatorMock.Verify(v => v.CreateWebRequest(requestUri), Times.Once);
-            WebCommunicatorMock.Verify(v => v.InitializeWebRequest(webRequest), Times.Once);
-            WebCommunicatorMock.Verify(v => v.GetWebResponse(webRequest), Times.Once);
-            WebCommunicatorMock.Verify(v => v.GetResponseStream(httpWebResponse), Times.Once);
-
-            const string expectedResponseFromServer = "Foo";
-            Assert.AreEqual(expectedResponseFromServer, responseFromServer);
         }
     }
 }

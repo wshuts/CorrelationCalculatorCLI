@@ -14,6 +14,7 @@ namespace PriceCorrelationCalculatorTest
         [SetUp]
         public void Setup()
         {
+            WebCommunicatorMock = new Mock<IWebCommunicator>(MockBehavior.Strict);
             PriceServer = new PriceServer {WebCommunicator = WebCommunicatorMock.Object};
         }
 
@@ -36,8 +37,7 @@ namespace PriceCorrelationCalculatorTest
 
         public PriceServer PriceServer { get; private set; }
 
-        public Mock<IWebCommunicator> WebCommunicatorMock { get; } =
-            new Mock<IWebCommunicator>(MockBehavior.Strict);
+        public Mock<IWebCommunicator> WebCommunicatorMock { get; private set; }
 
         private const string ExpectedFundTableQuery =
             "https://personal.vanguard.com/us/funds/tools/pricehistorysearch?Sc=1";
@@ -46,30 +46,45 @@ namespace PriceCorrelationCalculatorTest
             "https://personal.vanguard.com/us/funds/tools/pricehistorysearch?radio=1&results=get&FundType=VanguardFunds" +
             "&FundIntExt=INT&FundId=0540&Sc=1&fundName=0540&fundValue=0540&radiobutton2=1&beginDate=4%2F1%2F2020&endDate=6%2F30%2F2020";
 
-        private const string ExpectedResponseFromServer = "Junk\n" +
-                                                          "</option>\n" +
-                                                          "</option>\n" +
-                                                          "</option>\n" +
-                                                          "</option>\n" +
-                                                          "</option>\n" +
-                                                          "<option value=\"0540\" >500 Index Fund Adm       </option>\n" +
-                                                          "<option value=\"0502\" >Balanced Index Fund Adm  </option>\n" +
-                                                          "<option value=\"5100\" >CA IT Tax-Exempt Admiral </option>\n" +
-                                                          "Junk";
+        private const string ExpectedFundTableFromServer = "Junk\n" +
+                                                           "</option>\n" +
+                                                           "</option>\n" +
+                                                           "</option>\n" +
+                                                           "</option>\n" +
+                                                           "</option>\n" +
+                                                           "<option value=\"0540\" >500 Index Fund Adm       </option>\n" +
+                                                           "<option value=\"0502\" >Balanced Index Fund Adm  </option>\n" +
+                                                           "<option value=\"5100\" >CA IT Tax-Exempt Admiral </option>\n" +
+                                                           "Junk";
+
+        private const string ExpectedPriceInfoFromServer =
+            "Junk\n" +
+            "<tr class=\"ar\"><td align=\"left\">05/15/2020</td><td>$26.66</td><td class=\"nr\">&#8212;</td></tr>\n" +
+            "<tr class=\"wr\"><td align=\"left\">05/18/2020</td><td>$27.55</td><td class=\"nr\">&#8212;</td></tr>\n" +
+            "<tr class=\"wr\"><td align=\"left\">06/12/2020</td><td>$281.94</td><td class=\"nr\">1.84%</td></tr>\n" +
+            "<tr class=\"ar\"><td align=\"left\">06/15/2020</td><td>$284.30</td><td class=\"nr\">1.84%</td></tr>\n" +
+            "Junk";
 
         private void CanBuildFundTableQuery()
         {
             var fundTableQuery = PriceServer.FundTableQuery;
-
             Assert.AreEqual(ExpectedFundTableQuery, fundTableQuery);
         }
 
-        private void CanReadFromWeb()
+        private void CanReadFundTableFromWeb()
         {
             WebCommunicatorMockVerify();
 
             var responseFromServer = PriceServer.ResponseFromServer;
-            Assert.AreEqual(ExpectedResponseFromServer, responseFromServer);
+            Assert.AreEqual(ExpectedFundTableFromServer, responseFromServer);
+        }
+
+        private void CanReadPriceInfoFromWeb()
+        {
+            WebCommunicatorMockVerify();
+
+            var responseFromServer = PriceServer.ResponseFromServer;
+            Assert.AreEqual(ExpectedPriceInfoFromServer, responseFromServer);
         }
 
         private void WebCommunicatorMockVerify()
@@ -89,15 +104,18 @@ namespace PriceCorrelationCalculatorTest
             Assert.AreEqual(expectedFirstValue, firstValue);
         }
 
-        [Test]
-        public void CanBuildPriceInfoQuery()
+        private void CanBuildPriceInfoQuery()
         {
-            const string id = "0540";
-            var startDate = new DateTime(2020, 04, 01);
-            var endDate = new DateTime(2020, 06, 30);
-            var priceInfoQuery = PriceServer.BuildPriceInfoQuery(id, startDate, endDate);
-
+            var priceInfoQuery = PriceServer.PriceInfoQuery;
             Assert.AreEqual(ExpectedPriceInfoQuery, priceInfoQuery);
+        }
+
+        private void CanParsePriceInfo()
+        {
+            const string expectedFirstValue = "281.94";
+            var priceInfo = PriceServer.PriceInfo;
+            var firstValue = priceInfo["06/12/2020"];
+            Assert.AreEqual(expectedFirstValue, firstValue);
         }
 
         [Test]
@@ -107,34 +125,36 @@ namespace PriceCorrelationCalculatorTest
             httpWebResponse = It.IsAny<HttpWebResponse>();
             requestUri = ExpectedFundTableQuery;
             var utf8 = Encoding.UTF8;
-            var buffer = utf8.GetBytes(ExpectedResponseFromServer);
+            var buffer = utf8.GetBytes(ExpectedFundTableFromServer);
             stream = new MemoryStream(buffer);
             WebCommunicatorMockSetup();
 
             PriceServer.GetFundTable();
 
             CanBuildFundTableQuery();
-            CanReadFromWeb();
+            CanReadFundTableFromWeb();
             CanParseFundTable();
         }
 
         [Test]
-        public void CanParsePriceInfo()
+        public void CanRetrievePriceInfo()
         {
-            const string responseFromServer =
-                "Junk\n" +
-                "<tr class=\"ar\"><td align=\"left\">05/15/2020</td><td>$26.66</td><td class=\"nr\">&#8212;</td></tr>\n" +
-                "<tr class=\"wr\"><td align=\"left\">05/18/2020</td><td>$27.55</td><td class=\"nr\">&#8212;</td></tr>\n" +
-                "<tr class=\"wr\"><td align=\"left\">06/12/2020</td><td>$281.94</td><td class=\"nr\">1.84%</td></tr>\n" +
-                "<tr class=\"ar\"><td align=\"left\">06/15/2020</td><td>$284.30</td><td class=\"nr\">1.84%</td></tr>\n" +
-                "Junk";
+            webRequest = It.IsAny<WebRequest>();
+            httpWebResponse = It.IsAny<HttpWebResponse>();
+            requestUri = ExpectedPriceInfoQuery;
+            var utf8 = Encoding.UTF8;
+            var buffer = utf8.GetBytes(ExpectedPriceInfoFromServer);
+            stream = new MemoryStream(buffer);
+            WebCommunicatorMockSetup();
 
-            PriceServer.ParsePriceInfo(responseFromServer);
+            const string id = "0540";
+            var startDate = new DateTime(2020, 04, 01);
+            var endDate = new DateTime(2020, 06, 30);
+            PriceServer.RetrievePriceInfo(id, startDate, endDate);
 
-            const string expectedFirstValue = "281.94";
-            var priceInfo = PriceServer.PriceInfo;
-            var firstValue = priceInfo["06/12/2020"];
-            Assert.AreEqual(expectedFirstValue, firstValue);
+            CanBuildPriceInfoQuery();
+            CanReadPriceInfoFromWeb();
+            CanParsePriceInfo();
         }
     }
 }

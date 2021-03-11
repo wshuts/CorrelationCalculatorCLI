@@ -1,4 +1,5 @@
 ﻿using System;
+using PriceCorrelationCalculator;
 
 namespace CorrelationCalculatorCLI
 {

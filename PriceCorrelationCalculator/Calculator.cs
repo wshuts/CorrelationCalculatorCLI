@@ -2,7 +2,7 @@
 
 namespace PriceCorrelationCalculator
 {
-    internal class Calculator
+    public class Calculator
     {
         public void CalculateCorrelation()
         {

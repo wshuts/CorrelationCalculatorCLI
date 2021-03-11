@@ -10,4 +10,8 @@
     <OutputPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PriceCorrelationCalculator\PriceCorrelationCalculator.csproj" />
+  </ItemGroup>
+
 </Project>

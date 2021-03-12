@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorrelationCalculatorCLI", "CorrelationCalculatorCLI\CorrelationCalculatorCLI.csproj", "{8175DE66-0AEC-4C67-8350-7BF7853B0863}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCorrelationCalculator", "PriceCorrelationCalculator\PriceCorrelationCalculator.csproj", "{68C22A08-12DC-4B1B-9340-C27569F4A515}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceCorrelationCalculator", "PriceCorrelationCalculator\PriceCorrelationCalculator.csproj", "{68C22A08-12DC-4B1B-9340-C27569F4A515}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCorrelationCalculatorTest", "PriceCorrelationCalculatorTest\PriceCorrelationCalculatorTest.csproj", "{D08844F1-BF92-4E62-B57E-C7AB8680E049}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{68C22A08-12DC-4B1B-9340-C27569F4A515}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68C22A08-12DC-4B1B-9340-C27569F4A515}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68C22A08-12DC-4B1B-9340-C27569F4A515}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D08844F1-BF92-4E62-B57E-C7AB8680E049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D08844F1-BF92-4E62-B57E-C7AB8680E049}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D08844F1-BF92-4E62-B57E-C7AB8680E049}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D08844F1-BF92-4E62-B57E-C7AB8680E049}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
